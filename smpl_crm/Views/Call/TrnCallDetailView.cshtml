@@ -12,6 +12,14 @@
     body .modal-dialog {
         width: 900px;
     }
+
+    .hide-until-select2 {
+        opacity: 0;
+    }
+
+    .select2-container {
+        transition: opacity 0.3s ease-in-out;
+    }
 </style>
 
 <div id="callsViewModel">
@@ -47,11 +55,11 @@
                     </div>
                     <div class="form-group">
                         <label>Customer:</label>
-                        <input type="text" id="CustomerIdSelect" value="Initializing ...." class=" select2 select2-field" style="width: 100%;" />
+                        <input type="text" id="CustomerIdSelect" value="Initializing ...." class=" select2 select2-field hide-until-select2" style="width: 100%;" />
                     </div>
                     <div class="form-group">
                         <label>Product:</label>
-                        <input type="text" id="ProductIdSelect" value="Initializing ...." class=" seletc2 select2-field " style="width: 100%;" />
+                        <input type="text" id="ProductIdSelect" value="Initializing ...." class=" select2 select2-field hide-until-select2" style="width: 100%;" />
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -61,15 +69,15 @@
                     </div>
                     <div class="form-group">
                         <label>Call Status:</label>
-                        <input type="text" id="CallStatusIdSelect" value="Initializing ...." class=" select2 select2-field" style="width: 100%;" />
+                        <input type="text" id="CallStatusIdSelect" value="Initializing ...." class=" select2 select2-field hide-until-select2" style="width: 100%;" />
                     </div>
                     <div class="form-group">
                         <label>Answered By:</label>
-                        <input type="text" id="AnsweredByIdSelect" value="Initializing ...." class=" select2 select2-field" style="width: 100%;" />
+                        <input type="text" id="AnsweredByIdSelect" value="Initializing ...." class=" select2 select2-field hide-until-select2" style="width: 100%;" />
                     </div>
                     <div class="form-group">
                         <label>Assigned To:</label>
-                        <input type="text" id="AssignedToIdSelect" value="Initializing ...." class=" select2 select2-field" style="width: 100%;" />
+                        <input type="text" id="AssignedToIdSelect" value="Initializing ...." class=" select2 select2-field hide-until-select2" style="width: 100%;" />
                     </div>
                 </div>
             </div>
@@ -149,13 +157,13 @@
                             </div>
                             <div class="form-group">
                                 <label>Acted By:</label>
-                                <input type="text" id="ActedByIdSelect" name="ActedById" value="Initializing ...." class=" select2 select2-field" style="width: 100%;" />
+                                <input type="text" id="ActedByIdSelect" name="ActedById" value="Initializing ...." class=" select2 select2-field hide-until-select2" style="width: 100%;" />
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Action Type:</label>
-                                <input type="text" id="ActionTypeIdSelect" name="ActionTypeId"  value="Initializing ...." class=" select2 select2-field" style="width: 100%;" />
+                                <input type="text" id="ActionTypeIdSelect" name="ActionTypeId"  value="Initializing ...." class=" select2 select2-field hide-until-select2" style="width: 100%;" />
                             </div>
                             <div class="form-group">
                                 <label>Target Date:</label>
@@ -266,7 +274,7 @@
                 CallStatusId: !document.getElementById("CallStatusIdMem").value ? "" : document.getElementById("CallStatusIdMem").value,
                 AnsweredById: !document.getElementById("AnsweredByIdMem").value ? "" : document.getElementById("AnsweredByIdMem").value,
                 AssignedtoId: !document.getElementById("AssignedToIdMem").value ? "" : document.getElementById("AssignedToIdMem").value
-            };
+            };            
         }
         else {
             callViewModel = {
@@ -300,6 +308,7 @@
             contentType: 'application/json',
             success: function (result) {
                 koNamespace.bindData(result);
+                $('.loader-overlay').hide();
             }
         });
     };
@@ -408,6 +417,11 @@
 
     $(document).ready(function () {
         var trnCallId = "@HttpContext.Current.Request.QueryString["Id"]";
+
+        if (trnCallId == "")
+        {
+            $('.loader-overlay').hide();
+        }
 
         ko.cleanNode(document.getElementById("callsViewModel"));
 

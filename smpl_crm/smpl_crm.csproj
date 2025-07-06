@@ -191,7 +191,7 @@
     <Content Include="Content\images\Kenneth.jpg" />
     <Content Include="Content\select2-bootstrap.css" />
     <Content Include="Content\toastr.css" />
-    <Content Include="logo\innosoftlogo.png" />
+    <Content Include="favicon.ico" />
     <Content Include="Scripts\bootstrap-dataTables-paging.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -267,7 +267,6 @@
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\toastr.js" />
-    <Content Include="Views\Shared\innosoft.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -310,6 +309,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="logo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

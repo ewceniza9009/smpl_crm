@@ -165,6 +165,11 @@ namespace smpl_crm.Controllers
             var crmDc = new smpl_crmDataContext();
             var call = new TrnCall();
 
+            if (id == 0)
+            {
+                return Json(call, JsonRequestBehavior.AllowGet);
+            }
+
             innosoft_trnCall trnCallDetail = crmDc.innosoft_trnCalls.First(c => c.Id == id);
 
             call.Id = trnCallDetail.Id;

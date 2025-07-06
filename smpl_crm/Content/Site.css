@@ -104,9 +104,8 @@ textarea {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 9px;
+    padding-bottom: 0px;
     margin: 0 0 20px; /* Adjusted margin for new layout */
-    border-bottom: 1px solid #eee;
 }
 
     .page-header h2 {
