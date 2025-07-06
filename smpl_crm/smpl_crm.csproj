@@ -191,6 +191,7 @@
     <Content Include="Content\select2-bootstrap.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="favicon.ico" />
+    <Content Include="logo\StreetSmart.png" />
     <Content Include="Scripts\bootstrap-dataTables-paging.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -217,9 +218,14 @@
     <Content Include="Content\dataTable\images\sort_desc_disabled.png" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap.datatables.js" />
+    <None Include="Scripts\jquery-2.0.3.intellisense.js" />
+    <Content Include="Scripts\jquery-2.0.3.js" />
+    <Content Include="Scripts\jquery-2.0.3.min.js" />
     <Content Include="Scripts\jquery.dataTables.js" />
     <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.ext.dataTables.js" />
+    <Content Include="Scripts\jquery\jquery.js" />
+    <Content Include="Scripts\jquery\jquery.min.js" />
     <Content Include="Scripts\knockout-3.0.0.js" />
     <Content Include="Scripts\knockout.viewmodel.js" />
     <Content Include="Scripts\Select2-locales\select2_locale_ar.js" />
@@ -305,10 +311,11 @@
     <Content Include="Views\Call\TrnCallListView.cshtml" />
     <Content Include="Views\Call\TrnCallDetailView.cshtml" />
     <Content Include="Views\Call\RepCallActionView.cshtml" />
+    <Content Include="Scripts\jquery-2.0.3.min.map" />
+    <Content Include="Scripts\jquery\jquery.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="logo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -1,10 +1,13 @@
-﻿namespace smpl_crm.Models
+﻿using System.Web.Mvc;
+
+namespace smpl_crm.Models
 {
     public class TrnCallAction
     {
         public int CallActionId { get; set; }
         public int CallId { get; set; }
         public int ActedBy { get; set; }
+        [AllowHtml]
         public string Action { get; set; }
         public string EncodedDate { get; set; }
         public string TargetDate { get; set; }
