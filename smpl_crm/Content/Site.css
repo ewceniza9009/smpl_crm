@@ -138,3 +138,105 @@ textarea {
 .modal-footer .btn {
     margin-bottom: 0;
 }
+
+/* Overall Section Styling */
+.team-section {
+    padding: 60px 0;
+    background-color: #f8f9fa; /* A light gray background to make cards pop */
+}
+
+/* Individual Team Member Card */
+.team-member {
+    text-align: center;
+    margin-bottom: 40px; /* Provides space between rows on smaller screens */
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    /* Smooth transition for the hover effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    /* Card Hover Effect */
+    .team-member:hover {
+        transform: translateY(-10px); /* Lifts the card up slightly */
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Team Member Image */
+    .team-member img {
+        width: 150px;
+        height: 150px;
+        border: 5px solid #dee2e6; /* A subtle border around the image */
+    }
+
+    /* Name and Title Styling */
+    .team-member h4 {
+        margin-top: 20px;
+        margin-bottom: 5px;
+        font-weight: 600;
+        color: #343a40;
+    }
+
+    .team-member .text-muted {
+        font-style: italic;
+    }
+
+/* Social Media Button Styling */
+.social-buttons {
+    margin-top: 15px;
+}
+
+    .social-buttons .list-inline-item a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: #e9ecef;
+        color: #495057;
+        border-radius: 50%; /* Makes the buttons circular */
+        font-size: 18px;
+        transition: background-color 0.3s ease;
+    }
+
+        .social-buttons .list-inline-item a:hover {
+            background-color: #007bff; /* Example primary color */
+            color: #ffffff;
+        }
+
+
+/* Add this to your existing <style> block */
+
+/* ----- Loader Animation Styles ----- */
+.loader-overlay {
+    position: fixed; /* Sit on top of the page content */
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    z-index: 9999; /* Make sure it's on top */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader-spinner {
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #007bff; /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

@@ -3,6 +3,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="loader-overlay">
+    <div class="loader-spinner"></div>
+</div>
+
 <style>
     /* Keeps the original modal width */
     body .modal-dialog {
@@ -292,7 +296,7 @@
         $.ajax({
             url: "@(Html.Raw(Url.Action("TrnCallDetail", "Call", new { Id = HttpContext.Current.Request.QueryString["Id"] })))",
             type: 'get',
-            async: false,
+            async: true,
             contentType: 'application/json',
             success: function (result) {
                 koNamespace.bindData(result);

@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>innosoft_crm</RootNamespace>
-    <AssemblyName>innosoft_crm</AssemblyName>
+    <RootNamespace>smpl_crm</RootNamespace>
+    <AssemblyName>smpl_crm</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -181,9 +181,14 @@
     <Content Include="Content\DataTables-1.9.4\media\images\sort_desc.png" />
     <Content Include="Content\DataTables-1.9.4\media\images\sort_desc_disabled.png" />
     <Content Include="Content\datepicker.css" />
+    <Content Include="Content\images\Egan.jpg" />
+    <Content Include="Content\images\Erwin.jpg" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\images\Ian.jpg" />
     <Content Include="Content\images\innosoftlogo.png" />
+    <Content Include="Content\images\Jouel.png" />
+    <Content Include="Content\images\Kenneth.jpg" />
     <Content Include="Content\select2-bootstrap.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="logo\innosoftlogo.png" />

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36221.1 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "smpl_crm", "innosoft_crm\smpl_crm.csproj", "{9E29A35B-49CE-4E6F-BC36-04B14D4EA127}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "smpl_crm", "smpl_crm\smpl_crm.csproj", "{9E29A35B-49CE-4E6F-BC36-04B14D4EA127}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

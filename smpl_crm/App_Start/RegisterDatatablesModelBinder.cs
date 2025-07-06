@@ -9,7 +9,11 @@ namespace Mvc.Bootstrap.Datatables.Example.App_Start
 {
     public static class RegisterDatatablesModelBinder {
         public static void Start() {
-            ModelBinders.Binders.Add(typeof(DataTablesParam), new NullableDataTablesModelBinder());
+            // Check if a binder for this type hasn't been added yet
+            if (!ModelBinders.Binders.ContainsKey(typeof(DataTablesParam)))
+            {
+                ModelBinders.Binders.Add(typeof(DataTablesParam), new NullableDataTablesModelBinder());
+            }
         }
     }
 }

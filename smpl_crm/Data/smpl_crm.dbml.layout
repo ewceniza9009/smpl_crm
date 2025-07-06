@@ -57,7 +57,7 @@
         <classShapeMoniker Id="0509bce3-4b09-4938-91ab-ed8e67a0499f" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.75 : 5.27089680989583); (1.75 : 5.7973046875); (6.25 : 5.7973046875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(1.75 : 5.27089680989583); (1.75 : 5.7973046875); (3.22916666666667 : 5.7973046875 : JumpStart); (3.39583333333333 : 5.7973046875 : JumpEnd); (6.25 : 5.7973046875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/smpl_crmDataContext/innosoft_mstStaff/innosoft_mstStaff_innosoft_trnCallAction" />
       <nodes>
         <classShapeMoniker Id="92062475-35ee-4e36-9624-8442ad4f0664" />
