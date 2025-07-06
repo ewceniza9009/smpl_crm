@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "CALL LIST";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <h2>Call Log Management</h2>
+    <div class="actions">
+        <button type="button" class="btn btn-primary" onclick="CmdAdd_onclick()">
+            <span class="glyphicon glyphicon-plus"></span> Create Call Log
+        </button>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="TrnCallListDataTable" class="table table-hover" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th>Date Called</th>
+                        <th>Staff</th>
+                        <th>Customer</th>
+                        <th>Product</th>
+                        <th>Call Status</th>
+                        <th class="text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="~/Scripts/jquery-2.0.3.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.dataTables.js"></script>
+<script type="text/javascript" src="~/Scripts/bootstrap-dataTables-paging.js"></script>
+<script type="text/javascript" src="~/Scripts/toastr.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#TrnCallListDataTable').dataTable({
+            "bServerSide": true,
+            "bProcessing": true,
+            "sAjaxSource": "@Url.Action("TrnCallList", "Call")",
+            "aoColumns": [
+                { "mDataProp": "DateCalled" },
+                { "mDataProp": "StaffName" },
+                { "mDataProp": "CustomerName" },
+                { "mDataProp": "ProductName" },
+                { "mDataProp": "CallStatus" },
+                {
+                    "mData": "Id",
+                    "bSearchable": false,
+                    "bSortable": false,
+                    "sClass": "text-right",
+                    "mRender": function (data) {
+                        var detailButton = '<button type="button" class="btn btn-sm btn-default" onclick="CmdDetail_onclick(' + data + ')" title="View Details"><i class="glyphicon glyphicon-list-alt"></i></button>';
+                        var deleteButton = '<button type="button" class="btn btn-sm btn-danger" onclick="CmdDelete_onclick(' + data + ')" title="Delete"><i class="glyphicon glyphicon-trash"></i></button>';
+                        return detailButton + ' ' + deleteButton;
+                    }
+                }
+            ]
+        });
+    });
+
+    function CmdDelete_onclick(id) {
+        if (confirm("Do you want to delete this call: " + id)) {
+            var data = { 'id': id };
+            $.post('@Url.Action("TrnCallListDelete", "Call")', data,
+                function (retdata) {
+                    if (retdata == true) {
+                        toastr.success("Record deleted successfully.");
+                        // Full page reload as per original logic
+                        location.reload();
+                    }
+                    else {
+                        toastr.error("Record delete failed.");
+                    }
+                });
+        }
+    }
+
+    function CmdDetail_onclick(id) {
+        if (id > 0) {
+            window.location.href = '@Url.Action("TrnCallDetailView", "Call")?Id=' + id;
+        }
+    }
+
+    function CmdAdd_onclick() {
+        window.location.href = '@Url.Action("TrnCallDetailView", "Call")';
+    }
+</script>

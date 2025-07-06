@@ -1,0 +1,140 @@
+﻿/* ---- STICKY FOOTER & GLOBAL STYLES ---- */
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
+    /* Make the body a flex container that doesn't scroll */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.main-content {
+    /* Make this section grow and be the scrollable part of the page */
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 0; /* Provides spacing at the top and bottom of the content */
+}
+
+.navbar-custom, .footer {
+    /* Prevent the header and footer from shrinking */
+    flex-shrink: 0;
+}
+/* ---- END OF STICKY FOOTER STYLES ---- */
+
+
+/* Custom Navbar */
+.navbar-custom {
+    background-color: #ffffff;
+    border-bottom: 2px solid #007bff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    /* The navbar is no longer fixed, so we remove the top margin from the body */
+    position: relative;
+}
+
+    .navbar-custom .navbar-brand {
+        font-weight: 600;
+        color: #007bff;
+    }
+
+        .navbar-custom .navbar-brand:hover,
+        .navbar-custom .navbar-nav > li > a:hover {
+            color: #0056b3;
+        }
+
+/* Custom Footer */
+.footer {
+    padding: 20px 0;
+    background-color: #343a40;
+    color: #ffffff;
+    text-align: center;
+}
+
+/* Original App Styles */
+.btn-label {
+    position: relative;
+    left: -12px;
+    display: inline-block;
+    padding: 6px 12px;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 3px 0 0 3px;
+}
+
+.btn-labeled {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.btn {
+    margin-bottom: 10px;
+}
+
+.right-inner-addon {
+    position: relative;
+}
+
+    .right-inner-addon input {
+        padding-right: 30px;
+    }
+
+    .right-inner-addon i {
+        position: absolute;
+        right: 0px;
+        padding: 10px 12px;
+        pointer-events: none;
+    }
+
+.glyphicon-fire {
+    color: #007bff;
+}
+
+/* Set a default max-width for some form elements */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* Page Layout Styles */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 9px;
+    margin: 0 0 20px; /* Adjusted margin for new layout */
+    border-bottom: 1px solid #eee;
+}
+
+    .page-header h2 {
+        margin: 0;
+        font-weight: 600;
+    }
+
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* Table and Modal Fixes */
+.table-actions .btn {
+    margin-left: 5px;
+}
+
+.table > thead > tr > th {
+    font-weight: 600;
+}
+
+.modal-footer .btn {
+    margin-bottom: 0;
+}

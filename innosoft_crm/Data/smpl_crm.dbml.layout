@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 10.625" name="smpl_crm">
+  <DataContextMoniker Name="/smpl_crmDataContext" />
+  <nestedChildShapes>
+    <classShape Id="f26bf8d6-d35a-41e4-9692-38d5a986dee4" absoluteBounds="3.5, 6.5, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/smpl_crmDataContext/innosoft_mstActionType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ef28082c-54a5-45a1-ae09-3ea2d85b0aeb" absoluteBounds="3.515, 6.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0509bce3-4b09-4938-91ab-ed8e67a0499f" absoluteBounds="6.25, 2.75, 2, 3.1170068359375005">
+      <DataClassMoniker Name="/smpl_crmDataContext/innosoft_trnCallAction" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bb71e736-3fb0-429f-a4c1-2afab90d369c" absoluteBounds="6.265, 3.21, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a09351ce-5fc7-44f6-91b4-8d30f891fe77" absoluteBounds="0.75, 6.25, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/smpl_crmDataContext/innosoft_mstCallStatus" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cf68416c-4cc4-4c04-b649-0618d5ef34c6" absoluteBounds="0.765, 6.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2e3e75a2-c773-495d-a8ff-3de1726b102a" absoluteBounds="0.75, 8.375, 2, 1.9631982421874987">
+      <DataClassMoniker Name="/smpl_crmDataContext/innosoft_mstCustomer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2076fa78-9f76-43f2-96e2-38f6e810f353" absoluteBounds="0.765, 8.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a4dd1992-2c8e-4655-a4fd-9008858605fd" absoluteBounds="0.75, 1.375, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/smpl_crmDataContext/innosoft_mstProduct" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f7e63dac-8849-40a9-ae97-301d9b156ccc" absoluteBounds="0.765, 1.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="242c3d50-ce79-4dd8-bd3e-42c10b81a455" absoluteBounds="6.75, 6.75, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/smpl_crmDataContext/innosoft_mstProjectStatus" />
+      <nestedChildShapes>
+        <elementListCompartment Id="76c93cd5-c84f-4257-8f14-82410bd0040c" absoluteBounds="6.765, 7.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="92062475-35ee-4e36-9624-8442ad4f0664" absoluteBounds="0.75, 3.5, 2, 1.7708968098958326">
+      <DataClassMoniker Name="/smpl_crmDataContext/innosoft_mstStaff" />
+      <nestedChildShapes>
+        <elementListCompartment Id="48c009d1-43da-4b94-81ca-6dd3d3b58e12" absoluteBounds="0.765, 3.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="baa72a51-a96f-4a39-9146-dc83eba8879d" absoluteBounds="3.5, 3.125, 2, 2.5401025390625005">
+      <DataClassMoniker Name="/smpl_crmDataContext/innosoft_trnCall" />
+      <nestedChildShapes>
+        <elementListCompartment Id="642851c9-dae0-4ed0-921a-3bc343bd7082" absoluteBounds="3.515, 3.585, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 6.59375); (6.46875 : 6.59375); (6.46875 : 5.8670068359375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/smpl_crmDataContext/innosoft_mstActionType/innosoft_mstActionType_innosoft_trnCallAction" />
+      <nodes>
+        <classShapeMoniker Id="f26bf8d6-d35a-41e4-9692-38d5a986dee4" />
+        <classShapeMoniker Id="0509bce3-4b09-4938-91ab-ed8e67a0499f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.75 : 5.27089680989583); (1.75 : 5.7973046875); (6.25 : 5.7973046875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/smpl_crmDataContext/innosoft_mstStaff/innosoft_mstStaff_innosoft_trnCallAction" />
+      <nodes>
+        <classShapeMoniker Id="92062475-35ee-4e36-9624-8442ad4f0664" />
+        <classShapeMoniker Id="0509bce3-4b09-4938-91ab-ed8e67a0499f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 4.39505126953125); (6.25 : 4.39505126953125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/smpl_crmDataContext/innosoft_trnCall/innosoft_trnCall_innosoft_trnCallAction" />
+      <nodes>
+        <classShapeMoniker Id="baa72a51-a96f-4a39-9146-dc83eba8879d" />
+        <classShapeMoniker Id="0509bce3-4b09-4938-91ab-ed8e67a0499f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 6.25); (3.125 : 5.875); (3.125 : 6.04164000060096); (3.25357443490112 : 5.91306556569984 : JumpStart); (3.37142556509888 : 5.79521443550208 : JumpEnd); (3.50153746153846 : 5.6651025390625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/smpl_crmDataContext/innosoft_mstCallStatus/innosoft_mstCallStatus_innosoft_trnCall" />
+      <nodes>
+        <classShapeMoniker Id="a09351ce-5fc7-44f6-91b4-8d30f891fe77" />
+        <classShapeMoniker Id="baa72a51-a96f-4a39-9146-dc83eba8879d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 8.43691525225361); (3.3125 : 7.87441525225361); (3.3125 : 4.39505126953125); (3.5 : 4.39505126953125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/smpl_crmDataContext/innosoft_mstCustomer/innosoft_mstCustomer_innosoft_trnCall" />
+      <nodes>
+        <classShapeMoniker Id="2e3e75a2-c773-495d-a8ff-3de1726b102a" />
+        <classShapeMoniker Id="baa72a51-a96f-4a39-9146-dc83eba8879d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 1.97199625651042); (4.5 : 1.97199625651042); (4.5 : 3.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/smpl_crmDataContext/innosoft_mstProduct/innosoft_mstProduct_innosoft_trnCall" />
+      <nodes>
+        <classShapeMoniker Id="a4dd1992-2c8e-4655-a4fd-9008858605fd" />
+        <classShapeMoniker Id="baa72a51-a96f-4a39-9146-dc83eba8879d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 3.88502563476563); (3.5 : 3.88502563476563)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/smpl_crmDataContext/innosoft_mstStaff/innosoft_mstStaff_innosoft_trnCall" />
+      <nodes>
+        <classShapeMoniker Id="92062475-35ee-4e36-9624-8442ad4f0664" />
+        <classShapeMoniker Id="baa72a51-a96f-4a39-9146-dc83eba8879d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 4.89547403971354); (3.22916666666667 : 4.89547403971354 : JumpStart); (3.39583333333333 : 4.89547403971354 : JumpEnd); (3.5 : 4.89547403971354)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/smpl_crmDataContext/innosoft_mstStaff/innosoft_mstStaff_innosoft_trnCall1" />
+      <nodes>
+        <classShapeMoniker Id="92062475-35ee-4e36-9624-8442ad4f0664" />
+        <classShapeMoniker Id="baa72a51-a96f-4a39-9146-dc83eba8879d" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
