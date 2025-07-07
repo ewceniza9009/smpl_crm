@@ -110,7 +110,7 @@ namespace smpl_crm.Controllers
                 bool isStaffSearchable = Convert.ToBoolean(Request["bSearchable_3"]);
                 bool isCustomerNameSearchable = Convert.ToBoolean(Request["bSearchable_4"]);
                 bool isProductNameSearchable = true; 
-                bool isCallStatusSearchable = Convert.ToBoolean(Request["bSearchable_6"]);
+                bool isCallStatusSearchable = true;
                 filterTrnCallList = from sTcl in sortedTrnCallList
                     where
                         isCallDateSearchable && sTcl.DateCalled.ToString().ToLower().Contains(param.sSearch.ToLower()) ||
