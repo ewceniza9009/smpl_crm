@@ -34,9 +34,9 @@ namespace smpl_crm.Data
     partial void Insertinnosoft_mstActionType(innosoft_mstActionType instance);
     partial void Updateinnosoft_mstActionType(innosoft_mstActionType instance);
     partial void Deleteinnosoft_mstActionType(innosoft_mstActionType instance);
-    partial void Insertinnosoft_trnCallAction(innosoft_trnCallAction instance);
-    partial void Updateinnosoft_trnCallAction(innosoft_trnCallAction instance);
-    partial void Deleteinnosoft_trnCallAction(innosoft_trnCallAction instance);
+    partial void Insertinnosoft_trnProjectAction(innosoft_trnProjectAction instance);
+    partial void Updateinnosoft_trnProjectAction(innosoft_trnProjectAction instance);
+    partial void Deleteinnosoft_trnProjectAction(innosoft_trnProjectAction instance);
     partial void Insertinnosoft_mstCallStatus(innosoft_mstCallStatus instance);
     partial void Updateinnosoft_mstCallStatus(innosoft_mstCallStatus instance);
     partial void Deleteinnosoft_mstCallStatus(innosoft_mstCallStatus instance);
@@ -55,6 +55,12 @@ namespace smpl_crm.Data
     partial void Insertinnosoft_trnCall(innosoft_trnCall instance);
     partial void Updateinnosoft_trnCall(innosoft_trnCall instance);
     partial void Deleteinnosoft_trnCall(innosoft_trnCall instance);
+    partial void Insertinnosoft_trnCallAction(innosoft_trnCallAction instance);
+    partial void Updateinnosoft_trnCallAction(innosoft_trnCallAction instance);
+    partial void Deleteinnosoft_trnCallAction(innosoft_trnCallAction instance);
+    partial void Insertinnosoft_trnProject(innosoft_trnProject instance);
+    partial void Updateinnosoft_trnProject(innosoft_trnProject instance);
+    partial void Deleteinnosoft_trnProject(innosoft_trnProject instance);
         #endregion
 
         public smpl_crmDataContext() :
@@ -95,11 +101,11 @@ namespace smpl_crm.Data
 			}
 		}
 		
-		public System.Data.Linq.Table<innosoft_trnCallAction> innosoft_trnCallActions
+		public System.Data.Linq.Table<innosoft_trnProjectAction> innosoft_trnProjectActions
 		{
 			get
 			{
-				return this.GetTable<innosoft_trnCallAction>();
+				return this.GetTable<innosoft_trnProjectAction>();
 			}
 		}
 		
@@ -148,6 +154,22 @@ namespace smpl_crm.Data
 			get
 			{
 				return this.GetTable<innosoft_trnCall>();
+			}
+		}
+		
+		public System.Data.Linq.Table<innosoft_trnCallAction> innosoft_trnCallActions
+		{
+			get
+			{
+				return this.GetTable<innosoft_trnCallAction>();
+			}
+		}
+		
+		public System.Data.Linq.Table<innosoft_trnProject> innosoft_trnProjects
+		{
+			get
+			{
+				return this.GetTable<innosoft_trnProject>();
 			}
 		}
 	}
@@ -290,41 +312,31 @@ namespace smpl_crm.Data
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.innosoft_trnCallAction")]
-	public partial class innosoft_trnCallAction : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.innosoft_trnProjectAction")]
+	public partial class innosoft_trnProjectAction : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _Id;
 		
-		private System.Nullable<int> _CallId;
+		private System.Nullable<int> _ProjectId;
 		
-		private System.Nullable<int> _ActedBy;
+		private System.Nullable<int> _Programmer;
+		
+		private string _Issue;
 		
 		private string _Action;
 		
-		private System.Nullable<System.DateTime> _EncodedDate;
+		private System.Nullable<System.DateTime> _EncodedDateTime;
 		
-		private System.Nullable<System.DateTime> _TargetDate;
+		private System.Nullable<System.DateTime> _StartedDateTime;
 		
-		private System.Nullable<System.DateTime> _AcceptedDate;
-		
-		private string _AcceptedBy;
-		
-		private System.Nullable<int> _ActionTypeId;
-		
-		private System.Nullable<decimal> _Cost;
+		private System.Nullable<System.DateTime> _EndDateTime;
 		
 		private System.Nullable<decimal> _NumberOfHours;
 		
 		private System.Nullable<bool> _Done;
-		
-		private EntityRef<innosoft_mstActionType> _innosoft_mstActionType;
-		
-		private EntityRef<innosoft_mstStaff> _innosoft_mstStaff;
-		
-		private EntityRef<innosoft_trnCall> _innosoft_trnCall;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -332,35 +344,28 @@ namespace smpl_crm.Data
     partial void OnCreated();
     partial void OnIdChanging(int value);
     partial void OnIdChanged();
-    partial void OnCallIdChanging(System.Nullable<int> value);
-    partial void OnCallIdChanged();
-    partial void OnActedByChanging(System.Nullable<int> value);
-    partial void OnActedByChanged();
+    partial void OnProjectIdChanging(System.Nullable<int> value);
+    partial void OnProjectIdChanged();
+    partial void OnProgrammerChanging(System.Nullable<int> value);
+    partial void OnProgrammerChanged();
+    partial void OnIssueChanging(string value);
+    partial void OnIssueChanged();
     partial void OnActionChanging(string value);
     partial void OnActionChanged();
-    partial void OnEncodedDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnEncodedDateChanged();
-    partial void OnTargetDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnTargetDateChanged();
-    partial void OnAcceptedDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnAcceptedDateChanged();
-    partial void OnAcceptedByChanging(string value);
-    partial void OnAcceptedByChanged();
-    partial void OnActionTypeIdChanging(System.Nullable<int> value);
-    partial void OnActionTypeIdChanged();
-    partial void OnCostChanging(System.Nullable<decimal> value);
-    partial void OnCostChanged();
+    partial void OnEncodedDateTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnEncodedDateTimeChanged();
+    partial void OnStartedDateTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnStartedDateTimeChanged();
+    partial void OnEndDateTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnEndDateTimeChanged();
     partial void OnNumberOfHoursChanging(System.Nullable<decimal> value);
     partial void OnNumberOfHoursChanged();
     partial void OnDoneChanging(System.Nullable<bool> value);
     partial void OnDoneChanged();
     #endregion
 		
-		public innosoft_trnCallAction()
+		public innosoft_trnProjectAction()
 		{
-			this._innosoft_mstActionType = default(EntityRef<innosoft_mstActionType>);
-			this._innosoft_mstStaff = default(EntityRef<innosoft_mstStaff>);
-			this._innosoft_trnCall = default(EntityRef<innosoft_trnCall>);
 			OnCreated();
 		}
 		
@@ -384,50 +389,62 @@ namespace smpl_crm.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CallId", DbType="Int")]
-		public System.Nullable<int> CallId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectId", DbType="Int")]
+		public System.Nullable<int> ProjectId
 		{
 			get
 			{
-				return this._CallId;
+				return this._ProjectId;
 			}
 			set
 			{
-				if ((this._CallId != value))
+				if ((this._ProjectId != value))
 				{
-					if (this._innosoft_trnCall.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCallIdChanging(value);
+					this.OnProjectIdChanging(value);
 					this.SendPropertyChanging();
-					this._CallId = value;
-					this.SendPropertyChanged("CallId");
-					this.OnCallIdChanged();
+					this._ProjectId = value;
+					this.SendPropertyChanged("ProjectId");
+					this.OnProjectIdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActedBy", DbType="Int")]
-		public System.Nullable<int> ActedBy
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Programmer", DbType="Int")]
+		public System.Nullable<int> Programmer
 		{
 			get
 			{
-				return this._ActedBy;
+				return this._Programmer;
 			}
 			set
 			{
-				if ((this._ActedBy != value))
+				if ((this._Programmer != value))
 				{
-					if (this._innosoft_mstStaff.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnActedByChanging(value);
+					this.OnProgrammerChanging(value);
 					this.SendPropertyChanging();
-					this._ActedBy = value;
-					this.SendPropertyChanged("ActedBy");
-					this.OnActedByChanged();
+					this._Programmer = value;
+					this.SendPropertyChanged("Programmer");
+					this.OnProgrammerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Issue", DbType="NVarChar(255)")]
+		public string Issue
+		{
+			get
+			{
+				return this._Issue;
+			}
+			set
+			{
+				if ((this._Issue != value))
+				{
+					this.OnIssueChanging(value);
+					this.SendPropertyChanging();
+					this._Issue = value;
+					this.SendPropertyChanged("Issue");
+					this.OnIssueChanged();
 				}
 			}
 		}
@@ -452,126 +469,62 @@ namespace smpl_crm.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EncodedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> EncodedDate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EncodedDateTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> EncodedDateTime
 		{
 			get
 			{
-				return this._EncodedDate;
+				return this._EncodedDateTime;
 			}
 			set
 			{
-				if ((this._EncodedDate != value))
+				if ((this._EncodedDateTime != value))
 				{
-					this.OnEncodedDateChanging(value);
+					this.OnEncodedDateTimeChanging(value);
 					this.SendPropertyChanging();
-					this._EncodedDate = value;
-					this.SendPropertyChanged("EncodedDate");
-					this.OnEncodedDateChanged();
+					this._EncodedDateTime = value;
+					this.SendPropertyChanged("EncodedDateTime");
+					this.OnEncodedDateTimeChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TargetDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> TargetDate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartedDateTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> StartedDateTime
 		{
 			get
 			{
-				return this._TargetDate;
+				return this._StartedDateTime;
 			}
 			set
 			{
-				if ((this._TargetDate != value))
+				if ((this._StartedDateTime != value))
 				{
-					this.OnTargetDateChanging(value);
+					this.OnStartedDateTimeChanging(value);
 					this.SendPropertyChanging();
-					this._TargetDate = value;
-					this.SendPropertyChanged("TargetDate");
-					this.OnTargetDateChanged();
+					this._StartedDateTime = value;
+					this.SendPropertyChanged("StartedDateTime");
+					this.OnStartedDateTimeChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AcceptedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> AcceptedDate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDateTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> EndDateTime
 		{
 			get
 			{
-				return this._AcceptedDate;
+				return this._EndDateTime;
 			}
 			set
 			{
-				if ((this._AcceptedDate != value))
+				if ((this._EndDateTime != value))
 				{
-					this.OnAcceptedDateChanging(value);
+					this.OnEndDateTimeChanging(value);
 					this.SendPropertyChanging();
-					this._AcceptedDate = value;
-					this.SendPropertyChanged("AcceptedDate");
-					this.OnAcceptedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AcceptedBy", DbType="NVarChar(50)")]
-		public string AcceptedBy
-		{
-			get
-			{
-				return this._AcceptedBy;
-			}
-			set
-			{
-				if ((this._AcceptedBy != value))
-				{
-					this.OnAcceptedByChanging(value);
-					this.SendPropertyChanging();
-					this._AcceptedBy = value;
-					this.SendPropertyChanged("AcceptedBy");
-					this.OnAcceptedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActionTypeId", DbType="Int")]
-		public System.Nullable<int> ActionTypeId
-		{
-			get
-			{
-				return this._ActionTypeId;
-			}
-			set
-			{
-				if ((this._ActionTypeId != value))
-				{
-					if (this._innosoft_mstActionType.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnActionTypeIdChanging(value);
-					this.SendPropertyChanging();
-					this._ActionTypeId = value;
-					this.SendPropertyChanged("ActionTypeId");
-					this.OnActionTypeIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cost", DbType="Money")]
-		public System.Nullable<decimal> Cost
-		{
-			get
-			{
-				return this._Cost;
-			}
-			set
-			{
-				if ((this._Cost != value))
-				{
-					this.OnCostChanging(value);
-					this.SendPropertyChanging();
-					this._Cost = value;
-					this.SendPropertyChanged("Cost");
-					this.OnCostChanged();
+					this._EndDateTime = value;
+					this.SendPropertyChanged("EndDateTime");
+					this.OnEndDateTimeChanged();
 				}
 			}
 		}
@@ -612,108 +565,6 @@ namespace smpl_crm.Data
 					this._Done = value;
 					this.SendPropertyChanged("Done");
 					this.OnDoneChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="innosoft_mstActionType_innosoft_trnCallAction", Storage="_innosoft_mstActionType", ThisKey="ActionTypeId", OtherKey="Id", IsForeignKey=true)]
-		public innosoft_mstActionType innosoft_mstActionType
-		{
-			get
-			{
-				return this._innosoft_mstActionType.Entity;
-			}
-			set
-			{
-				innosoft_mstActionType previousValue = this._innosoft_mstActionType.Entity;
-				if (((previousValue != value) 
-							|| (this._innosoft_mstActionType.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._innosoft_mstActionType.Entity = null;
-						previousValue.innosoft_trnCallActions.Remove(this);
-					}
-					this._innosoft_mstActionType.Entity = value;
-					if ((value != null))
-					{
-						value.innosoft_trnCallActions.Add(this);
-						this._ActionTypeId = value.Id;
-					}
-					else
-					{
-						this._ActionTypeId = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("innosoft_mstActionType");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="innosoft_mstStaff_innosoft_trnCallAction", Storage="_innosoft_mstStaff", ThisKey="ActedBy", OtherKey="Id", IsForeignKey=true)]
-		public innosoft_mstStaff innosoft_mstStaff
-		{
-			get
-			{
-				return this._innosoft_mstStaff.Entity;
-			}
-			set
-			{
-				innosoft_mstStaff previousValue = this._innosoft_mstStaff.Entity;
-				if (((previousValue != value) 
-							|| (this._innosoft_mstStaff.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._innosoft_mstStaff.Entity = null;
-						previousValue.innosoft_trnCallActions.Remove(this);
-					}
-					this._innosoft_mstStaff.Entity = value;
-					if ((value != null))
-					{
-						value.innosoft_trnCallActions.Add(this);
-						this._ActedBy = value.Id;
-					}
-					else
-					{
-						this._ActedBy = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("innosoft_mstStaff");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="innosoft_trnCall_innosoft_trnCallAction", Storage="_innosoft_trnCall", ThisKey="CallId", OtherKey="Id", IsForeignKey=true, DeleteRule="CASCADE")]
-		public innosoft_trnCall innosoft_trnCall
-		{
-			get
-			{
-				return this._innosoft_trnCall.Entity;
-			}
-			set
-			{
-				innosoft_trnCall previousValue = this._innosoft_trnCall.Entity;
-				if (((previousValue != value) 
-							|| (this._innosoft_trnCall.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._innosoft_trnCall.Entity = null;
-						previousValue.innosoft_trnCallActions.Remove(this);
-					}
-					this._innosoft_trnCall.Entity = value;
-					if ((value != null))
-					{
-						value.innosoft_trnCallActions.Add(this);
-						this._CallId = value.Id;
-					}
-					else
-					{
-						this._CallId = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("innosoft_trnCall");
 				}
 			}
 		}
@@ -1327,11 +1178,11 @@ namespace smpl_crm.Data
 		
 		private string _EMail;
 		
-		private EntitySet<innosoft_trnCallAction> _innosoft_trnCallActions;
-		
 		private EntitySet<innosoft_trnCall> _innosoft_trnCalls;
 		
 		private EntitySet<innosoft_trnCall> _innosoft_trnCalls1;
+		
+		private EntitySet<innosoft_trnCallAction> _innosoft_trnCallActions;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1351,9 +1202,9 @@ namespace smpl_crm.Data
 		
 		public innosoft_mstStaff()
 		{
-			this._innosoft_trnCallActions = new EntitySet<innosoft_trnCallAction>(new Action<innosoft_trnCallAction>(this.attach_innosoft_trnCallActions), new Action<innosoft_trnCallAction>(this.detach_innosoft_trnCallActions));
 			this._innosoft_trnCalls = new EntitySet<innosoft_trnCall>(new Action<innosoft_trnCall>(this.attach_innosoft_trnCalls), new Action<innosoft_trnCall>(this.detach_innosoft_trnCalls));
 			this._innosoft_trnCalls1 = new EntitySet<innosoft_trnCall>(new Action<innosoft_trnCall>(this.attach_innosoft_trnCalls1), new Action<innosoft_trnCall>(this.detach_innosoft_trnCalls1));
+			this._innosoft_trnCallActions = new EntitySet<innosoft_trnCallAction>(new Action<innosoft_trnCallAction>(this.attach_innosoft_trnCallActions), new Action<innosoft_trnCallAction>(this.detach_innosoft_trnCallActions));
 			OnCreated();
 		}
 		
@@ -1457,19 +1308,6 @@ namespace smpl_crm.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="innosoft_mstStaff_innosoft_trnCallAction", Storage="_innosoft_trnCallActions", ThisKey="Id", OtherKey="ActedBy")]
-		public EntitySet<innosoft_trnCallAction> innosoft_trnCallActions
-		{
-			get
-			{
-				return this._innosoft_trnCallActions;
-			}
-			set
-			{
-				this._innosoft_trnCallActions.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="innosoft_mstStaff_innosoft_trnCall", Storage="_innosoft_trnCalls", ThisKey="Id", OtherKey="AnsweredById")]
 		public EntitySet<innosoft_trnCall> innosoft_trnCalls
 		{
@@ -1496,6 +1334,19 @@ namespace smpl_crm.Data
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="innosoft_mstStaff_innosoft_trnCallAction", Storage="_innosoft_trnCallActions", ThisKey="Id", OtherKey="ActedBy")]
+		public EntitySet<innosoft_trnCallAction> innosoft_trnCallActions
+		{
+			get
+			{
+				return this._innosoft_trnCallActions;
+			}
+			set
+			{
+				this._innosoft_trnCallActions.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1514,18 +1365,6 @@ namespace smpl_crm.Data
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_innosoft_trnCallActions(innosoft_trnCallAction entity)
-		{
-			this.SendPropertyChanging();
-			entity.innosoft_mstStaff = this;
-		}
-		
-		private void detach_innosoft_trnCallActions(innosoft_trnCallAction entity)
-		{
-			this.SendPropertyChanging();
-			entity.innosoft_mstStaff = null;
 		}
 		
 		private void attach_innosoft_trnCalls(innosoft_trnCall entity)
@@ -1550,6 +1389,18 @@ namespace smpl_crm.Data
 		{
 			this.SendPropertyChanging();
 			entity.innosoft_mstStaff1 = null;
+		}
+		
+		private void attach_innosoft_trnCallActions(innosoft_trnCallAction entity)
+		{
+			this.SendPropertyChanging();
+			entity.innosoft_mstStaff = this;
+		}
+		
+		private void detach_innosoft_trnCallActions(innosoft_trnCallAction entity)
+		{
+			this.SendPropertyChanging();
+			entity.innosoft_mstStaff = null;
 		}
 	}
 	
@@ -1732,7 +1583,7 @@ namespace smpl_crm.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Issue", DbType="NText", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Issue", DbType="NVarChar(MAX)")]
 		public string Issue
 		{
 			get
@@ -2037,6 +1888,709 @@ namespace smpl_crm.Data
 		{
 			this.SendPropertyChanging();
 			entity.innosoft_trnCall = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.innosoft_trnCallAction")]
+	public partial class innosoft_trnCallAction : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<int> _CallId;
+		
+		private System.Nullable<int> _ActedBy;
+		
+		private string _Action;
+		
+		private System.Nullable<System.DateTime> _EncodedDate;
+		
+		private System.Nullable<System.DateTime> _TargetDate;
+		
+		private System.Nullable<System.DateTime> _AcceptedDate;
+		
+		private string _AcceptedBy;
+		
+		private System.Nullable<int> _ActionTypeId;
+		
+		private System.Nullable<decimal> _Cost;
+		
+		private System.Nullable<decimal> _NumberOfHours;
+		
+		private System.Nullable<bool> _Done;
+		
+		private EntityRef<innosoft_mstActionType> _innosoft_mstActionType;
+		
+		private EntityRef<innosoft_mstStaff> _innosoft_mstStaff;
+		
+		private EntityRef<innosoft_trnCall> _innosoft_trnCall;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnCallIdChanging(System.Nullable<int> value);
+    partial void OnCallIdChanged();
+    partial void OnActedByChanging(System.Nullable<int> value);
+    partial void OnActedByChanged();
+    partial void OnActionChanging(string value);
+    partial void OnActionChanged();
+    partial void OnEncodedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnEncodedDateChanged();
+    partial void OnTargetDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnTargetDateChanged();
+    partial void OnAcceptedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnAcceptedDateChanged();
+    partial void OnAcceptedByChanging(string value);
+    partial void OnAcceptedByChanged();
+    partial void OnActionTypeIdChanging(System.Nullable<int> value);
+    partial void OnActionTypeIdChanged();
+    partial void OnCostChanging(System.Nullable<decimal> value);
+    partial void OnCostChanged();
+    partial void OnNumberOfHoursChanging(System.Nullable<decimal> value);
+    partial void OnNumberOfHoursChanged();
+    partial void OnDoneChanging(System.Nullable<bool> value);
+    partial void OnDoneChanged();
+    #endregion
+		
+		public innosoft_trnCallAction()
+		{
+			this._innosoft_mstActionType = default(EntityRef<innosoft_mstActionType>);
+			this._innosoft_mstStaff = default(EntityRef<innosoft_mstStaff>);
+			this._innosoft_trnCall = default(EntityRef<innosoft_trnCall>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CallId", DbType="Int")]
+		public System.Nullable<int> CallId
+		{
+			get
+			{
+				return this._CallId;
+			}
+			set
+			{
+				if ((this._CallId != value))
+				{
+					if (this._innosoft_trnCall.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCallIdChanging(value);
+					this.SendPropertyChanging();
+					this._CallId = value;
+					this.SendPropertyChanged("CallId");
+					this.OnCallIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActedBy", DbType="Int")]
+		public System.Nullable<int> ActedBy
+		{
+			get
+			{
+				return this._ActedBy;
+			}
+			set
+			{
+				if ((this._ActedBy != value))
+				{
+					if (this._innosoft_mstStaff.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnActedByChanging(value);
+					this.SendPropertyChanging();
+					this._ActedBy = value;
+					this.SendPropertyChanged("ActedBy");
+					this.OnActedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Action", DbType="NVarChar(255)")]
+		public string Action
+		{
+			get
+			{
+				return this._Action;
+			}
+			set
+			{
+				if ((this._Action != value))
+				{
+					this.OnActionChanging(value);
+					this.SendPropertyChanging();
+					this._Action = value;
+					this.SendPropertyChanged("Action");
+					this.OnActionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EncodedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> EncodedDate
+		{
+			get
+			{
+				return this._EncodedDate;
+			}
+			set
+			{
+				if ((this._EncodedDate != value))
+				{
+					this.OnEncodedDateChanging(value);
+					this.SendPropertyChanging();
+					this._EncodedDate = value;
+					this.SendPropertyChanged("EncodedDate");
+					this.OnEncodedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TargetDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> TargetDate
+		{
+			get
+			{
+				return this._TargetDate;
+			}
+			set
+			{
+				if ((this._TargetDate != value))
+				{
+					this.OnTargetDateChanging(value);
+					this.SendPropertyChanging();
+					this._TargetDate = value;
+					this.SendPropertyChanged("TargetDate");
+					this.OnTargetDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AcceptedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> AcceptedDate
+		{
+			get
+			{
+				return this._AcceptedDate;
+			}
+			set
+			{
+				if ((this._AcceptedDate != value))
+				{
+					this.OnAcceptedDateChanging(value);
+					this.SendPropertyChanging();
+					this._AcceptedDate = value;
+					this.SendPropertyChanged("AcceptedDate");
+					this.OnAcceptedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AcceptedBy", DbType="NVarChar(50)")]
+		public string AcceptedBy
+		{
+			get
+			{
+				return this._AcceptedBy;
+			}
+			set
+			{
+				if ((this._AcceptedBy != value))
+				{
+					this.OnAcceptedByChanging(value);
+					this.SendPropertyChanging();
+					this._AcceptedBy = value;
+					this.SendPropertyChanged("AcceptedBy");
+					this.OnAcceptedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActionTypeId", DbType="Int")]
+		public System.Nullable<int> ActionTypeId
+		{
+			get
+			{
+				return this._ActionTypeId;
+			}
+			set
+			{
+				if ((this._ActionTypeId != value))
+				{
+					if (this._innosoft_mstActionType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnActionTypeIdChanging(value);
+					this.SendPropertyChanging();
+					this._ActionTypeId = value;
+					this.SendPropertyChanged("ActionTypeId");
+					this.OnActionTypeIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cost", DbType="Money")]
+		public System.Nullable<decimal> Cost
+		{
+			get
+			{
+				return this._Cost;
+			}
+			set
+			{
+				if ((this._Cost != value))
+				{
+					this.OnCostChanging(value);
+					this.SendPropertyChanging();
+					this._Cost = value;
+					this.SendPropertyChanged("Cost");
+					this.OnCostChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumberOfHours", DbType="Decimal(18,4)")]
+		public System.Nullable<decimal> NumberOfHours
+		{
+			get
+			{
+				return this._NumberOfHours;
+			}
+			set
+			{
+				if ((this._NumberOfHours != value))
+				{
+					this.OnNumberOfHoursChanging(value);
+					this.SendPropertyChanging();
+					this._NumberOfHours = value;
+					this.SendPropertyChanged("NumberOfHours");
+					this.OnNumberOfHoursChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Done", DbType="Bit")]
+		public System.Nullable<bool> Done
+		{
+			get
+			{
+				return this._Done;
+			}
+			set
+			{
+				if ((this._Done != value))
+				{
+					this.OnDoneChanging(value);
+					this.SendPropertyChanging();
+					this._Done = value;
+					this.SendPropertyChanged("Done");
+					this.OnDoneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="innosoft_mstActionType_innosoft_trnCallAction", Storage="_innosoft_mstActionType", ThisKey="ActionTypeId", OtherKey="Id", IsForeignKey=true)]
+		public innosoft_mstActionType innosoft_mstActionType
+		{
+			get
+			{
+				return this._innosoft_mstActionType.Entity;
+			}
+			set
+			{
+				innosoft_mstActionType previousValue = this._innosoft_mstActionType.Entity;
+				if (((previousValue != value) 
+							|| (this._innosoft_mstActionType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._innosoft_mstActionType.Entity = null;
+						previousValue.innosoft_trnCallActions.Remove(this);
+					}
+					this._innosoft_mstActionType.Entity = value;
+					if ((value != null))
+					{
+						value.innosoft_trnCallActions.Add(this);
+						this._ActionTypeId = value.Id;
+					}
+					else
+					{
+						this._ActionTypeId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("innosoft_mstActionType");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="innosoft_mstStaff_innosoft_trnCallAction", Storage="_innosoft_mstStaff", ThisKey="ActedBy", OtherKey="Id", IsForeignKey=true)]
+		public innosoft_mstStaff innosoft_mstStaff
+		{
+			get
+			{
+				return this._innosoft_mstStaff.Entity;
+			}
+			set
+			{
+				innosoft_mstStaff previousValue = this._innosoft_mstStaff.Entity;
+				if (((previousValue != value) 
+							|| (this._innosoft_mstStaff.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._innosoft_mstStaff.Entity = null;
+						previousValue.innosoft_trnCallActions.Remove(this);
+					}
+					this._innosoft_mstStaff.Entity = value;
+					if ((value != null))
+					{
+						value.innosoft_trnCallActions.Add(this);
+						this._ActedBy = value.Id;
+					}
+					else
+					{
+						this._ActedBy = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("innosoft_mstStaff");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="innosoft_trnCall_innosoft_trnCallAction", Storage="_innosoft_trnCall", ThisKey="CallId", OtherKey="Id", IsForeignKey=true, DeleteRule="CASCADE")]
+		public innosoft_trnCall innosoft_trnCall
+		{
+			get
+			{
+				return this._innosoft_trnCall.Entity;
+			}
+			set
+			{
+				innosoft_trnCall previousValue = this._innosoft_trnCall.Entity;
+				if (((previousValue != value) 
+							|| (this._innosoft_trnCall.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._innosoft_trnCall.Entity = null;
+						previousValue.innosoft_trnCallActions.Remove(this);
+					}
+					this._innosoft_trnCall.Entity = value;
+					if ((value != null))
+					{
+						value.innosoft_trnCallActions.Add(this);
+						this._CallId = value.Id;
+					}
+					else
+					{
+						this._CallId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("innosoft_trnCall");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.innosoft_trnProject")]
+	public partial class innosoft_trnProject : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<System.DateTime> _ProjectDate;
+		
+		private System.Nullable<int> _CustomerId;
+		
+		private System.Nullable<int> _ProductId;
+		
+		private System.Nullable<int> _Programmer;
+		
+		private string _Particulars;
+		
+		private System.Nullable<System.DateTime> _AcceptanceDate;
+		
+		private System.Nullable<int> _ProjectStatusId;
+		
+		private System.Nullable<int> _AccountExecutive;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnProjectDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnProjectDateChanged();
+    partial void OnCustomerIdChanging(System.Nullable<int> value);
+    partial void OnCustomerIdChanged();
+    partial void OnProductIdChanging(System.Nullable<int> value);
+    partial void OnProductIdChanged();
+    partial void OnProgrammerChanging(System.Nullable<int> value);
+    partial void OnProgrammerChanged();
+    partial void OnParticularsChanging(string value);
+    partial void OnParticularsChanged();
+    partial void OnAcceptanceDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnAcceptanceDateChanged();
+    partial void OnProjectStatusIdChanging(System.Nullable<int> value);
+    partial void OnProjectStatusIdChanged();
+    partial void OnAccountExecutiveChanging(System.Nullable<int> value);
+    partial void OnAccountExecutiveChanged();
+    #endregion
+		
+		public innosoft_trnProject()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ProjectDate
+		{
+			get
+			{
+				return this._ProjectDate;
+			}
+			set
+			{
+				if ((this._ProjectDate != value))
+				{
+					this.OnProjectDateChanging(value);
+					this.SendPropertyChanging();
+					this._ProjectDate = value;
+					this.SendPropertyChanged("ProjectDate");
+					this.OnProjectDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerId", DbType="Int")]
+		public System.Nullable<int> CustomerId
+		{
+			get
+			{
+				return this._CustomerId;
+			}
+			set
+			{
+				if ((this._CustomerId != value))
+				{
+					this.OnCustomerIdChanging(value);
+					this.SendPropertyChanging();
+					this._CustomerId = value;
+					this.SendPropertyChanged("CustomerId");
+					this.OnCustomerIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductId", DbType="Int")]
+		public System.Nullable<int> ProductId
+		{
+			get
+			{
+				return this._ProductId;
+			}
+			set
+			{
+				if ((this._ProductId != value))
+				{
+					this.OnProductIdChanging(value);
+					this.SendPropertyChanging();
+					this._ProductId = value;
+					this.SendPropertyChanged("ProductId");
+					this.OnProductIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Programmer", DbType="Int")]
+		public System.Nullable<int> Programmer
+		{
+			get
+			{
+				return this._Programmer;
+			}
+			set
+			{
+				if ((this._Programmer != value))
+				{
+					this.OnProgrammerChanging(value);
+					this.SendPropertyChanging();
+					this._Programmer = value;
+					this.SendPropertyChanged("Programmer");
+					this.OnProgrammerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Particulars", DbType="NVarChar(255)")]
+		public string Particulars
+		{
+			get
+			{
+				return this._Particulars;
+			}
+			set
+			{
+				if ((this._Particulars != value))
+				{
+					this.OnParticularsChanging(value);
+					this.SendPropertyChanging();
+					this._Particulars = value;
+					this.SendPropertyChanged("Particulars");
+					this.OnParticularsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AcceptanceDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> AcceptanceDate
+		{
+			get
+			{
+				return this._AcceptanceDate;
+			}
+			set
+			{
+				if ((this._AcceptanceDate != value))
+				{
+					this.OnAcceptanceDateChanging(value);
+					this.SendPropertyChanging();
+					this._AcceptanceDate = value;
+					this.SendPropertyChanged("AcceptanceDate");
+					this.OnAcceptanceDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectStatusId", DbType="Int")]
+		public System.Nullable<int> ProjectStatusId
+		{
+			get
+			{
+				return this._ProjectStatusId;
+			}
+			set
+			{
+				if ((this._ProjectStatusId != value))
+				{
+					this.OnProjectStatusIdChanging(value);
+					this.SendPropertyChanging();
+					this._ProjectStatusId = value;
+					this.SendPropertyChanged("ProjectStatusId");
+					this.OnProjectStatusIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountExecutive", DbType="Int")]
+		public System.Nullable<int> AccountExecutive
+		{
+			get
+			{
+				return this._AccountExecutive;
+			}
+			set
+			{
+				if ((this._AccountExecutive != value))
+				{
+					this.OnAccountExecutiveChanging(value);
+					this.SendPropertyChanging();
+					this._AccountExecutive = value;
+					this.SendPropertyChanged("AccountExecutive");
+					this.OnAccountExecutiveChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

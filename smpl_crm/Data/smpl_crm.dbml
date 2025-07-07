@@ -7,23 +7,18 @@
       <Association Name="innosoft_mstActionType_innosoft_trnCallAction" Member="innosoft_trnCallActions" ThisKey="Id" OtherKey="ActionTypeId" Type="innosoft_trnCallAction" />
     </Type>
   </Table>
-  <Table Name="dbo.innosoft_trnCallAction" Member="innosoft_trnCallActions">
-    <Type Name="innosoft_trnCallAction">
+  <Table Name="dbo.innosoft_trnProjectAction" Member="innosoft_trnProjectActions">
+    <Type Name="innosoft_trnProjectAction">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="CallId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ActedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProjectId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Programmer" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Issue" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="Action" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="EncodedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="TargetDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="AcceptedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="AcceptedBy" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="ActionTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Cost" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="EncodedDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="StartedDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EndDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="NumberOfHours" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
       <Column Name="Done" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="innosoft_mstActionType_innosoft_trnCallAction" Member="innosoft_mstActionType" ThisKey="ActionTypeId" OtherKey="Id" Type="innosoft_mstActionType" IsForeignKey="true" />
-      <Association Name="innosoft_mstStaff_innosoft_trnCallAction" Member="innosoft_mstStaff" ThisKey="ActedBy" OtherKey="Id" Type="innosoft_mstStaff" IsForeignKey="true" />
-      <Association Name="innosoft_trnCall_innosoft_trnCallAction" Member="innosoft_trnCall" ThisKey="CallId" OtherKey="Id" Type="innosoft_trnCall" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.innosoft_mstCallStatus" Member="innosoft_mstCallStatus">
@@ -66,9 +61,9 @@
       <Column Name="Address" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="Telephone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="EMail" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="innosoft_mstStaff_innosoft_trnCallAction" Member="innosoft_trnCallActions" ThisKey="Id" OtherKey="ActedBy" Type="innosoft_trnCallAction" />
       <Association Name="innosoft_mstStaff_innosoft_trnCall" Member="innosoft_trnCalls" ThisKey="Id" OtherKey="AnsweredById" Type="innosoft_trnCall" />
       <Association Name="innosoft_mstStaff_innosoft_trnCall1" Member="innosoft_trnCalls1" ThisKey="Id" OtherKey="AssignedToId" Type="innosoft_trnCall" />
+      <Association Name="innosoft_mstStaff_innosoft_trnCallAction" Member="innosoft_trnCallActions" ThisKey="Id" OtherKey="ActedBy" Type="innosoft_trnCallAction" />
     </Type>
   </Table>
   <Table Name="dbo.innosoft_trnCall" Member="innosoft_trnCalls">
@@ -78,7 +73,7 @@
       <Column Name="CustomerId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ProductId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Caller" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Issue" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Issue" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="CallStatusId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="AnsweredById" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="AssignedToId" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -88,6 +83,38 @@
       <Association Name="innosoft_mstProduct_innosoft_trnCall" Member="innosoft_mstProduct" ThisKey="ProductId" OtherKey="Id" Type="innosoft_mstProduct" IsForeignKey="true" />
       <Association Name="innosoft_mstStaff_innosoft_trnCall" Member="innosoft_mstStaff" ThisKey="AnsweredById" OtherKey="Id" Type="innosoft_mstStaff" IsForeignKey="true" />
       <Association Name="innosoft_mstStaff_innosoft_trnCall1" Member="innosoft_mstStaff1" ThisKey="AssignedToId" OtherKey="Id" Type="innosoft_mstStaff" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.innosoft_trnCallAction" Member="innosoft_trnCallActions">
+    <Type Name="innosoft_trnCallAction">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CallId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ActedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Action" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="EncodedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TargetDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="AcceptedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="AcceptedBy" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ActionTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cost" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="NumberOfHours" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="Done" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="innosoft_mstActionType_innosoft_trnCallAction" Member="innosoft_mstActionType" ThisKey="ActionTypeId" OtherKey="Id" Type="innosoft_mstActionType" IsForeignKey="true" />
+      <Association Name="innosoft_mstStaff_innosoft_trnCallAction" Member="innosoft_mstStaff" ThisKey="ActedBy" OtherKey="Id" Type="innosoft_mstStaff" IsForeignKey="true" />
+      <Association Name="innosoft_trnCall_innosoft_trnCallAction" Member="innosoft_trnCall" ThisKey="CallId" OtherKey="Id" Type="innosoft_trnCall" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.innosoft_trnProject" Member="innosoft_trnProjects">
+    <Type Name="innosoft_trnProject">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProjectDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProductId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Programmer" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Particulars" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="AcceptanceDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ProjectStatusId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AccountExecutive" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

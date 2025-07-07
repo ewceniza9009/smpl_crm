@@ -1,14 +1,15 @@
-﻿using System;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using LinqKit;
+using smpl_crm.Data;
+using smpl_crm.Helpers;
+using smpl_crm.Models;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
-using smpl_crm.Data;
-using smpl_crm.Helpers;
-using smpl_crm.Models;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
 using Font = iTextSharp.text.Font;
 using Image = iTextSharp.text.Image;
 using Rectangle = iTextSharp.text.Rectangle;
@@ -18,25 +19,27 @@ namespace smpl_crm.Controllers
     public class CallController : Controller
     {
         #region TrnCall/TrnCallAction CRUD Functions
-        //TrnCallList Json Result called by Jquery - Datatable Library for "Read" Function
         [HttpGet]
         public JsonResult TrnCallList(jQueryDataTableParamModel param)
         {
             var crmDc = new smpl_crmDataContext();
 
-            var trnCallList = from calls in crmDc.innosoft_trnCalls
+            var trnCallList = from calls in crmDc.innosoft_trnCalls.AsExpandable()
                 join customers in crmDc.innosoft_mstCustomers on calls.CustomerId equals customers.Id
                 join products in crmDc.innosoft_mstProducts on calls.ProductId equals products.Id
                 join callStatuses in crmDc.innosoft_mstCallStatus on calls.CallStatusId equals callStatuses.Id
                 join staff in crmDc.innosoft_mstStaffs on calls.AssignedToId equals staff.Id
                 let staffAssigned = staff.Name
+                let productName = string.Concat(
+                    SqlReadyExpressions.GetTextInParenthesesOrFullString.Invoke(products.Product), " - ", 
+                    SqlReadyExpressions.GetTextInParenthesesOrFullString.Invoke(calls.Issue))
                 select new
                 {
                     calls.Id,
                     calls.DateCalled,
                     StaffName = staffAssigned,
                     CustomerName = customers.Name,
-                    ProductName = products.Product,
+                    ProductName = productName,
                     callStatuses.CallStatus
                 };
 
@@ -47,19 +50,15 @@ namespace smpl_crm.Controllers
             bool isCallStatusSortable = Convert.ToBoolean(Request["bSortable_6"]);
             int sortColumnIndex = Convert.ToInt32(Request["iSortCol_0"]);
 
-            //Initial sort for jquery datatables, Sorted By Date in Descending Order 
             var sortedTrnCallListObIdDesc = from tcall in trnCallList
                 orderby tcall.DateCalled descending
                 select tcall;
-            //Sort Date Ascending
             var sortedTrnCallListObDateAsc = from tcall in trnCallList
                 orderby (sortColumnIndex == 2 && isCallDateSortable ? tcall.DateCalled : null) ascending
                 select tcall;
-            //Sort Date Descending
             var sortedTrnCallListObDateDesc = from tcall in trnCallList
                 orderby (sortColumnIndex == 2 && isCallDateSortable ? tcall.DateCalled : null) descending
                 select tcall;
-            //Sort by any field selected except for date in ascending order
             var sortedTrnCallListAsc = from tcall in trnCallList
                 orderby (sortColumnIndex == 3 && isStaffSortable
                     ? tcall.StaffName
@@ -71,7 +70,6 @@ namespace smpl_crm.Controllers
                                 ? tcall.CallStatus
                                 : "") ascending
                 select tcall;
-            //Sort by any field selected except for date in descending order
             var sortedTrnCallListDesc = from tcall in trnCallList
                 orderby (sortColumnIndex == 3 && isStaffSortable
                     ? tcall.StaffName
@@ -85,7 +83,6 @@ namespace smpl_crm.Controllers
                 select tcall;
 
             string sortDirection = Request["sSortDir_0"];
-            //Sort Evaluation
             var sortedTrnCallList = sortDirection == "asc" && sortColumnIndex == 2
                 ? sortedTrnCallListObDateAsc
                 : sortDirection == "desc" && sortColumnIndex == 2
@@ -96,7 +93,6 @@ namespace smpl_crm.Controllers
                             ? sortedTrnCallListObIdDesc
                             : sortedTrnCallListDesc;
 
-            //Initial return value if parameters in param are empty
             var filterTrnCallList = from sTcl in sortedTrnCallList
                 select new
                 {
@@ -113,9 +109,8 @@ namespace smpl_crm.Controllers
                 bool isCallDateSearchable = Convert.ToBoolean(Request["bSearchable_2"]);
                 bool isStaffSearchable = Convert.ToBoolean(Request["bSearchable_3"]);
                 bool isCustomerNameSearchable = Convert.ToBoolean(Request["bSearchable_4"]);
-                bool isProductNameSearchable = Convert.ToBoolean(Request["bSearchable_5"]);
+                bool isProductNameSearchable = true; 
                 bool isCallStatusSearchable = Convert.ToBoolean(Request["bSearchable_6"]);
-                //The return value if parameters in param are not empty
                 filterTrnCallList = from sTcl in sortedTrnCallList
                     where
                         isCallDateSearchable && sTcl.DateCalled.ToString().ToLower().Contains(param.sSearch.ToLower()) ||
@@ -133,7 +128,6 @@ namespace smpl_crm.Controllers
                         sTcl.CallStatus
                     };
             }
-            //The display format of return
             var filteredTrnCallList = from sTcl in filterTrnCallList
                 select new
                 {
@@ -146,9 +140,7 @@ namespace smpl_crm.Controllers
                 };
 
             var displayedTrnCallList = filteredTrnCallList.Skip(param.iDisplayStart).Take(param.iDisplayLength);
-            //Value to list
             var result = displayedTrnCallList.ToList();
-            //Final Return
             return Json(new
             {
                 param.sEcho,
@@ -158,7 +150,6 @@ namespace smpl_crm.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
-        //TrnCallDetail Json Result Called by Jquery - Knockout Library for "Read" Function
         [HttpGet]
         public JsonResult TrnCallDetail(Int64 id)
         {
@@ -185,7 +176,6 @@ namespace smpl_crm.Controllers
             return Json(call, JsonRequestBehavior.AllowGet);
         }
 
-        //TrnCallDetailMaxId Json Result Called by Jquery - Knockout Library for "Read" Function
         [HttpGet]
         public JsonResult TrnCallDetailMaxId()
         {
@@ -197,7 +187,6 @@ namespace smpl_crm.Controllers
             return Json(trnCallDetailMaxId, JsonRequestBehavior.AllowGet);
         }
 
-        //TrnCallDetail Json Result called by Jquery - Knockout Library for "Create" & "Update" Function
         public JsonResult TrnCallDetailSave(TrnCall call)
         {
             using (var crmDc = new smpl_crmDataContext())
@@ -240,7 +229,6 @@ namespace smpl_crm.Controllers
             return Json(call, JsonRequestBehavior.AllowGet);
         }
 
-        //TrnCallDetail Json Result called by Jquery - knockout Library for "Delete" Function
         public JsonResult TrnCallListDelete(Int64 id)
         {
             var crmDc = new smpl_crmDataContext();
@@ -255,7 +243,6 @@ namespace smpl_crm.Controllers
             }
             catch(Exception)
             {
-                //Do nothing...
             }
 
             crmDc.SubmitChanges();
@@ -263,7 +250,6 @@ namespace smpl_crm.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
-        //TrnCallActionList Json Result called by Jquery - Datatable for "Read" Function
         [HttpGet]
         public JsonResult TrnCallActionList(Int64 callId)
         {
@@ -277,21 +263,20 @@ namespace smpl_crm.Controllers
                 {
                     callAction.Id,
                     callAction.CallId,
-                    ActedBy = staff.Name, //*
-                    CallAction = callAction.Action, //*
+                    ActedBy = staff.Name, 
+                    CallAction = callAction.Action, 
                     callAction.EncodedDate,
                     callAction.TargetDate,
-                    AcceptedDate = String.Format("{0:MMM d yyyy}", callAction.AcceptedDate), //*
-                    actionType.ActionType, //*
+                    AcceptedDate = String.Format("{0:MMM d yyyy}", callAction.AcceptedDate), 
+                    actionType.ActionType, 
                     callAction.Cost,
                     callAction.NumberOfHours,
-                    callAction.Done //*
+                    callAction.Done 
                 };
 
             return Json(new {aaData = callActs.ToList()}, JsonRequestBehavior.AllowGet);
         }
 
-        //TrnCallActionDetail Json Result called by Jquery - Knockout Library for "Read" Function
         [HttpGet]
         public JsonResult TrnCallActionDetail(Int64 callActionId)
         {
@@ -336,7 +321,6 @@ namespace smpl_crm.Controllers
             return Json(callActions, JsonRequestBehavior.AllowGet);
         }
 
-        //TrnCallActionDetail Json Result called by Jquery - Knockout Library for "Create" & "Update" Function
         public JsonResult TrnCallActionDetailSave(TrnCallAction callAction)
         {
             var crmDc = new smpl_crmDataContext();
@@ -345,9 +329,6 @@ namespace smpl_crm.Controllers
             DateTime AcceptedDate = DateTime.Now;
 
             TimeSpan tsNumberOfHours;
-
-            //TargetDate = DateTime.Parse(callAction.TargetDate + " " + callAction.TargetTime);
-            //AcceptedDate = DateTime.Parse(callAction.AcceptedDate + " " + callAction.AcceptedTime);
 
             tsNumberOfHours = AcceptedDate - TargetDate;
 
@@ -393,7 +374,6 @@ namespace smpl_crm.Controllers
             return Json(callAction, JsonRequestBehavior.AllowGet);
         }
 
-        //TrnCallActionDetail Json Result called by Jquery - knockout Library for "Delete" Function
         public JsonResult TrnCallActionListDelete(Int64 id)
         {
             var crmDc = new smpl_crmDataContext();
@@ -412,7 +392,6 @@ namespace smpl_crm.Controllers
         #region Select2 for TrnCallDetail
 
         #region Select Customer
-        //Linq to JsonpResult Customer select2 Format
         public static Select2PagedResult CustomerToSelect2Format(IEnumerable<MstCustomer> customer)
         {
             var jsonCustomer = new Select2PagedResult { Results = new List<Select2Result>() };
@@ -429,7 +408,6 @@ namespace smpl_crm.Controllers
             return jsonCustomer;
         }
 
-        //Linq to JsonResult Initial Selection for Jquery - select2 ComboBox 
         public JsonResult SelectCustomerById(int id)
         {
             var crmDc = new smpl_crmDataContext();
@@ -445,7 +423,6 @@ namespace smpl_crm.Controllers
             return Json(cust, JsonRequestBehavior.AllowGet);
         }
 
-        //Find CustomerId by querying innosoft_TrnCall SQL_To_LINQ scheme criteria by CallId
         public int SelectCustomerId(int id)
         {
             var crmDc = new smpl_crmDataContext();
@@ -459,7 +436,6 @@ namespace smpl_crm.Controllers
 
         #endregion
 
-        //Linq to JsonpResult source query for Jquery - select2 ComboBox 
         public ActionResult SelectCustomer(string searchTerm, int pageSize, int pageNum)
         {
             var crmDc = new smpl_crmDataContext();
