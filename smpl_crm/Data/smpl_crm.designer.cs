@@ -61,10 +61,11 @@ namespace smpl_crm.Data
     partial void Insertinnosoft_trnProject(innosoft_trnProject instance);
     partial void Updateinnosoft_trnProject(innosoft_trnProject instance);
     partial void Deleteinnosoft_trnProject(innosoft_trnProject instance);
+    partial void InsertMstUser(MstUser instance);
+    partial void UpdateMstUser(MstUser instance);
+    partial void DeleteMstUser(MstUser instance);
         #endregion
-
-        public smpl_crmDataContext() :
-			base(ConfigurationManager.ConnectionStrings["smpl_crmConnectionString"].ConnectionString)
+        public smpl_crmDataContext() : base(ConfigurationManager.ConnectionStrings["smpl_crmConnectionString"].ConnectionString)
         {
             OnCreated();
         }
@@ -170,6 +171,14 @@ namespace smpl_crm.Data
 			get
 			{
 				return this.GetTable<innosoft_trnProject>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MstUser> MstUsers
+		{
+			get
+			{
+				return this.GetTable<MstUser>();
 			}
 		}
 	}
@@ -2569,6 +2578,140 @@ namespace smpl_crm.Data
 					this._AccountExecutive = value;
 					this.SendPropertyChanged("AccountExecutive");
 					this.OnAccountExecutiveChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MstUsers")]
+	public partial class MstUser : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Username;
+		
+		private string _PasswordHash;
+		
+		private string _OrigPassword;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnUsernameChanging(string value);
+    partial void OnUsernameChanged();
+    partial void OnPasswordHashChanging(string value);
+    partial void OnPasswordHashChanged();
+    partial void OnOrigPasswordChanging(string value);
+    partial void OnOrigPasswordChanged();
+    #endregion
+		
+		public MstUser()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string Username
+		{
+			get
+			{
+				return this._Username;
+			}
+			set
+			{
+				if ((this._Username != value))
+				{
+					this.OnUsernameChanging(value);
+					this.SendPropertyChanging();
+					this._Username = value;
+					this.SendPropertyChanged("Username");
+					this.OnUsernameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PasswordHash", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string PasswordHash
+		{
+			get
+			{
+				return this._PasswordHash;
+			}
+			set
+			{
+				if ((this._PasswordHash != value))
+				{
+					this.OnPasswordHashChanging(value);
+					this.SendPropertyChanging();
+					this._PasswordHash = value;
+					this.SendPropertyChanged("PasswordHash");
+					this.OnPasswordHashChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrigPassword", DbType="NVarChar(MAX)")]
+		public string OrigPassword
+		{
+			get
+			{
+				return this._OrigPassword;
+			}
+			set
+			{
+				if ((this._OrigPassword != value))
+				{
+					this.OnOrigPasswordChanging(value);
+					this.SendPropertyChanging();
+					this._OrigPassword = value;
+					this.SendPropertyChanged("OrigPassword");
+					this.OnOrigPasswordChanged();
 				}
 			}
 		}

@@ -30,7 +30,7 @@ body {
 /* Custom Navbar */
 .navbar-custom {
     background-color: #ffffff;
-    border-bottom: 2px solid #007bff;
+    /*border-bottom: 2px solid #007bff;*/
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     /* The navbar is no longer fixed, so we remove the top margin from the body */
     position: relative;
@@ -45,12 +45,23 @@ body {
         .navbar-custom .navbar-nav > li > a:hover {
             color: #0056b3;
         }
+.navbar-brand > img {
+    margin-top: 0px;
+    height: 40px;
+}
+
+.navbar-default .navbar-nav > li > a {
+    margin-top: 11px;
+}
 
 /* Custom Footer */
 .footer {
-    padding: 20px 0;
-    background-color: #343a40;
-    color: #ffffff;
+    padding: 15px 0;
+    background: none;
+    border-top: 1px solid #d2d6de;
+    background-color: lightgray !important;
+    color: darkslategray;
+    font-size: 14px;
     text-align: center;
 }
 
@@ -239,3 +250,23 @@ textarea {
         transform: rotate(360deg);
     }
 }
+
+/* Added by Egan 08/12/2025 */
+.label-custom {
+    font-size: 10px;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Space between image and text */
+    flex-wrap: wrap; /* Wrap on small screens */
+}
+
+    .footer-content img {
+        height: 40px;
+        opacity: 0.7;
+    }

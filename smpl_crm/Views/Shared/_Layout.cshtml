@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - CRM</title>
 
-    <link rel="icon" href="@Url.Content("~/favicon.ico")" type="image/x-icon" />
+    @*<link rel="icon" href="@Url.Content("~/favicon.ico")" type="image/x-icon" />*@
+    <link rel="icon" href="@Url.Content("~/logo/streetsmartLogo.ico")" type="image/x-icon" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,7 +30,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("STREETSMART", "Index", "Home", null, new { @class = "navbar-brand" })
+                <a class="navbar-brand" href="/Home">
+                    <img src="~/Content/images/STREETSMART.png"/>
+                </a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -48,9 +51,18 @@
 
     <footer class="footer">
         <div class="container">
-            <p class="text-muted">&copy; @DateTime.Now.Year - Web iCRM vJUL.6.25.EWC</p>
+            <div class="footer-content">
+                <img src="~/Content/images/STREETSMART.png" alt="Logo" />
+                <label class="label-custom">© 2025, Web iCRM by Streetsmart Corporation</label>
+            </div>
         </div>
     </footer>
+
+    @*<footer class="footer">
+            <div class="container">
+                <p class="text-muted">&copy; @DateTime.Now.Year - Web iCRM vJUL.6.25.EWC</p>
+            </div>
+        </footer>*@
 
     <script src="@Url.Content("~/Scripts/jquery-2.2.4.min.js")"></script>
     <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>

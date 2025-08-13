@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12, 10.875" name="smpl_crm">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.5, 10.875" name="smpl_crm">
   <DataContextMoniker Name="/smpl_crmDataContext" />
   <nestedChildShapes>
     <classShape Id="e1f3756a-7474-4a03-8b96-d9892d79a158" absoluteBounds="3.5, 5.875, 2, 1.3862939453125005">
@@ -69,14 +69,14 @@
         <classShapeMoniker Id="2d4a7bfd-0309-4b65-b632-7b6f8bd44606" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 8.68691525225361); (3.3125 : 8.12441525225361); (3.3125 : 3.18632890429687); (3.5 : 3.18632890429687)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 8.68691525225361); (3.3125 : 8.12441525225361); (3.3125 : 2.52005126953125); (3.5 : 2.52005126953125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/smpl_crmDataContext/innosoft_mstCustomer/innosoft_mstCustomer_innosoft_trnCall" />
       <nodes>
         <classShapeMoniker Id="00a680db-5441-412b-bd45-06f492f603fb" />
         <classShapeMoniker Id="2d4a7bfd-0309-4b65-b632-7b6f8bd44606" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 5.09699625651042); (3.04166666666667 : 5.09699625651042 : JumpStart); (3.20833333333333 : 5.09699625651042 : JumpEnd); (3.22916666666667 : 5.09699625651042 : JumpStart); (3.39583333333333 : 5.09699625651042 : JumpEnd); (4.5 : 5.09699625651042); (4.5 : 3.7901025390625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 5.09699625651042); (3.04166666666667 : 5.09699625651042 : JumpStart); (3.20833333333333 : 5.09699625651042 : JumpEnd); (3.22916666666667 : 5.09699625651042 : JumpStart); (3.39583333333333 : 5.09699625651042 : JumpEnd); (4.5 : 5.09699625651042); (4.5 : 3.7901025390625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/smpl_crmDataContext/innosoft_mstProduct/innosoft_mstProduct_innosoft_trnCall" />
       <nodes>
         <classShapeMoniker Id="4dcedc7f-dd18-42ee-9c95-dd3620db74b5" />
@@ -90,33 +90,39 @@
         <classShapeMoniker Id="2d4a7bfd-0309-4b65-b632-7b6f8bd44606" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 2.85319008691406); (3.04166666666667 : 2.85319008691406 : JumpStart); (3.20833333333333 : 2.85319008691406 : JumpEnd); (3.5 : 2.85319008691406)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 2.85319008691406); (3.04166666666667 : 2.85319008691406 : JumpStart); (3.20833333333333 : 2.85319008691406 : JumpEnd); (3.22916666666667 : 2.85319008691406 : JumpStart); (3.39583333333333 : 2.85319008691406 : JumpEnd); (3.5 : 2.85319008691406)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/smpl_crmDataContext/innosoft_mstStaff/innosoft_mstStaff_innosoft_trnCall1" />
       <nodes>
         <classShapeMoniker Id="5ee35dee-7482-472c-9477-afe4d6541887" />
         <classShapeMoniker Id="2d4a7bfd-0309-4b65-b632-7b6f8bd44606" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 5.875); (5.875 : 5.5); (5.875 : 2.55850341796875); (6.25 : 2.55850341796875)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 5.875); (5.875 : 5.5); (5.875 : 2.55850341796875); (6.25 : 2.55850341796875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/smpl_crmDataContext/innosoft_mstActionType/innosoft_mstActionType_innosoft_trnCallAction" />
       <nodes>
         <classShapeMoniker Id="e1f3756a-7474-4a03-8b96-d9892d79a158" />
         <classShapeMoniker Id="b0b85caa-fa1c-45dd-8ee4-91b2bd010ea5" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.75 : 3.39589680989583); (1.75 : 3.9848046875); (3.04166666666667 : 3.9848046875 : JumpStart); (3.20833333333333 : 3.9848046875 : JumpEnd); (3.22916666666667 : 3.9848046875 : JumpStart); (3.39583333333333 : 3.9848046875 : JumpEnd); (4.41666666666667 : 3.9848046875 : JumpStart); (4.58333333333333 : 3.9848046875 : JumpEnd); (5.79166666666667 : 3.9848046875 : JumpStart); (5.95833333333333 : 3.9848046875 : JumpEnd); (6.25 : 3.9848046875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.75 : 3.39589680989583); (1.75 : 3.9848046875); (3.04166666666667 : 3.9848046875 : JumpStart); (3.20833333333333 : 3.9848046875 : JumpEnd); (3.22916666666667 : 3.9848046875 : JumpStart); (3.39583333333333 : 3.9848046875 : JumpEnd); (4.41666666666667 : 3.9848046875 : JumpStart); (4.58333333333333 : 3.9848046875 : JumpEnd); (5.79166666666667 : 3.9848046875 : JumpStart); (5.95833333333333 : 3.9848046875 : JumpEnd); (6.25 : 3.9848046875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/smpl_crmDataContext/innosoft_mstStaff/innosoft_mstStaff_innosoft_trnCallAction" />
       <nodes>
         <classShapeMoniker Id="5ee35dee-7482-472c-9477-afe4d6541887" />
         <classShapeMoniker Id="b0b85caa-fa1c-45dd-8ee4-91b2bd010ea5" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 1.84175170898438); (6.25 : 1.84175170898438)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 1.84175170898438); (6.25 : 1.84175170898438)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/smpl_crmDataContext/innosoft_trnCall/innosoft_trnCall_innosoft_trnCallAction" />
       <nodes>
         <classShapeMoniker Id="2d4a7bfd-0309-4b65-b632-7b6f8bd44606" />
         <classShapeMoniker Id="b0b85caa-fa1c-45dd-8ee4-91b2bd010ea5" />
       </nodes>
     </associationConnector>
+    <classShape Id="ef23be06-a863-465b-a8df-8d64a5397765" absoluteBounds="12.25, 1.25, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/smpl_crmDataContext/MstUser" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3dd05270-f3dc-4652-8359-d8f43e9a037f" absoluteBounds="12.265, 1.71, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
