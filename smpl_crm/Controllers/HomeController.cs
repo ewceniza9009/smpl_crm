@@ -129,11 +129,13 @@ namespace smpl_crm.Controllers
             return Json(cust, JsonRequestBehavior.AllowGet);
         }
 
+        [Authorize]
         public ActionResult MstCustomerListView()
         {
             return View();
         }
 
+        [Authorize]
         public ActionResult MstCustomerDetailView()
         {
             return View();

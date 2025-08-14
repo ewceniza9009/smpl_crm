@@ -212,7 +212,7 @@
             <div class="feature-card">
                 <img src="~/Content/images/Play.jpg" alt="Play" class="img-responsive" style="max-width:290px;">
                 <h2>Play</h2>
-                <p>StreetSmart CRM integrates seamlessly into your workflow, keeping you flexible and focused.</p>
+                <p>Streetsmart CRM integrates seamlessly into your workflow, keeping you flexible and focused.</p>
             </div>
         </div>
         <div class="col-md-4 d-flex align-items-stretch">
@@ -224,7 +224,7 @@
         </div>
     </div>
 </div>
-<hr style="margin:0"/>
+<hr style="margin:0" />
 <section class="team-section">
     <div class="container">
         <h2 class="section-title">Our Team</h2>
@@ -299,6 +299,17 @@
     <script type="text/javascript" src="~/Scripts/jquery.dataTables.js"></script>
     <script type="text/javascript" src="~/Scripts/bootstrap-dataTables-paging.js"></script>
     <script type="text/javascript" src="~/Scripts/select2.js"></script>
+    <script src="~/Scripts/toastr.js"></script>
+    <script>
+          @if (TempData["SuccessMessage"] != null)
+          {
+              @:toastr.success('@TempData["SuccessMessage"]');
+          }
+          @if (TempData["ErrorMessage"] != null)
+          {
+              @:toastr.error('@TempData["ErrorMessage"]');
+          }
+    </script>
     <script>
         $(document).ready(function () {
             // These will still work if you have a table with id="table1" and a select with id="s1" elsewhere

@@ -1,0 +1,132 @@
+﻿@model smpl_crm.Controllers.RegisterUserModel
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="@Url.Content("~/logo/streetsmartLogo.ico")" type="image/x-icon" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/dataTable/css/jquery.datatables.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/bootstrap-datatables.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/datepicker.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/css/select2.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/select2-bootstrap.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/toastr.css")" rel="stylesheet" />
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        main {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            max-width: 450px;
+            width: 100%;
+            padding: 5rem 8rem;
+            border-color: rgba(28,108,116,0.70);
+            box-shadow: 0.6rem 0.6rem 0.6rem rgba(63,151,148,0.70);
+            background: linear-gradient(20deg, rgba(28,108,116,0.80), rgba(63,151,148,0.80)), url('/Content/images/Jumbotron.png') no-repeat center center;
+            background-size: cover, cover;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color:whitesmoke;
+        }
+
+        .btn-primary {
+            padding: 10px 40px;
+            background-color: #3F9794;
+            border-color: rgba(28,108,116,0.70);
+        }
+
+            .btn-primary:hover {
+                background-color: #6CC1BE;
+                border-color: #6CC1BE;
+            }
+        .btn-danger {
+            padding: 10px 40px;
+        }
+        .btn-success {
+            padding: 10px 40px;
+        }
+    </style>
+</head>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="d-flex flex-column min-vh-100">
+        <main>
+            <div class="card shadow-sm border-0 p-4">
+                <h3 class="text-center" style="margin-bottom: 50px; color: whitesmoke;">Register</h3>
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Username, htmlAttributes: new { @class = "col-sm-6 form-label" })
+                    <div class="col-sm-12">
+                        @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Enter username" })
+                        @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.FullName, htmlAttributes: new { @class = "col-sm-6 form-label" })
+                    <div class="col-sm-12">
+                        @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", placeholder = "Enter fullname" })
+                        @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Password, htmlAttributes: new { @class = "col-sm-6 form-label" })
+                    <div class="col-sm-12">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter password" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.ConfirmPassword, htmlAttributes: new { @class = "col-sm-8 form-label" })
+                    <div class="col-sm-12">
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm password" })
+                        @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <br/>
+                <div class="form-group row mt-3">
+                    <div class="col-sm-12 offset-sm-2">
+                        <button type="submit" class="btn btn-success">Confirm</button>
+                        &nbsp;
+                        <a href="@Url.Action("MstUserListView", "User")" class="btn btn-danger ms-2">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+}
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/jquery-2.0.3.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap-dataTables-paging.js"></script>
+    <script type="text/javascript" src="~/Scripts/select2.js"></script>
+}

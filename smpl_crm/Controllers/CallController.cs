@@ -1282,12 +1282,14 @@ namespace smpl_crm.Controllers
 
         #region TrnCall Views List and Detail
 
+        [Authorize]
         public ActionResult TrnCallListView()
         {
             return View();
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult TrnCallDetailView()
         {
             return View();

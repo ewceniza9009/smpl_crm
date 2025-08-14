@@ -123,11 +123,13 @@ namespace smpl_crm.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
+        [Authorize]
         public ActionResult MstUserListView()
         {
             return View();
         }
 
+        [Authorize]
         public ActionResult MstUserDetailView()
         {
             return View();

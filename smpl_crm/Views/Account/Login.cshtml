@@ -60,38 +60,105 @@
                 background-color: #6CC1BE;
                 border-color: #6CC1BE;
             }
+
+        .has-feedback {
+            position: relative; /* MUST for icon to stay inside input */
+        }
+
+        .has-error .form-control {
+            border-color: #dc3545;
+            border-width: 1.5px;
+        }
+
+        .has-success .form-control {
+            border-color: #28a745;
+            border-width: 1.5px;
+        }
+
+        .has-feedback .form-control-feedback {
+            position: absolute; /* absolutely inside form-group */
+            right: 30px; /* inside input */
+            top: 62%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: inherit; /* inherit red/green */
+            pointer-events: none;
+        }
+
+        .has-feedback .form-control {
+            padding-right: 40px; /* space for icon */
+        }
+
+        .has-error .form-control-feedback {
+            color: #dc3545; /* red */
+        }
+
+        .has-success .form-control-feedback {
+            color: #28a745; /* green */
+        }
+
+        .alert-danger {
+            text-align: center; /* centers the text */
+        }
+
+            .alert-danger ul {
+                list-style: none; /* remove bullets */
+                padding-left: 0;
+                margin-bottom: 0;
+            }
+
+                .alert-danger ul li {
+                    display: inline-block; /* keep each error on its own line */
+                    margin: 0 5px; /* optional spacing between errors */
+                }
+        .btn-success {
+            padding: 10px 40px;
+        }
     </style>
 </head>
 
-@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" }))
+@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @id = "loginForm", @class = "form-horizontal", role = "form", novalidate = "novalidate" }))
 {
     @Html.AntiForgeryToken()
-
-    @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
 
     <div class="d-flex flex-column min-vh-100">
         <main>
             <div class="card shadow-sm border-0 p-4">
                 <h3 class="text-center" style="margin-bottom: 50px; color: whitesmoke;">Login</h3>
 
-                @using (Html.BeginForm("Login", "Account", FormMethod.Post))
-                {
-                    <div class="mb-3" style="margin-left:10px;">
-                        @Html.LabelFor(m => m.Username, new { @class = "form-label fw-semibold", style = "margin-bottom: 15px; color:whitesmoke;font-weight:500;" })
-                        @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Enter your username", required = "required", style = "margin-bottom: 15px;" })
-                    </div>
+                <div class="form-group has-feedback" style="margin-left:10px; position: relative;">
+                    @Html.LabelFor(m => m.Username, new { @class = "form-label fw-semibold", style = "margin-bottom: 15px; color:whitesmoke;font-weight:500;" })
+                    @Html.TextBoxFor(m => m.Username, new
+                    {
+                        @class = "form-control",
+                        placeholder = "Enter your username",
+                        required = "required",
+                        style = "margin-bottom: 15px;"
+                    })
+                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                </div>
 
-                    <div class="mb-3" style="margin-left:10px;">
-                        @Html.LabelFor(m => m.Password, new { @class = "form-label fw-semibold", style = "margin-bottom: 15px;color:whitesmoke;font-weight:500;" })
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter your password", required = "required", style = "margin-bottom: 15px;" })
-                    </div>
+                <div class="form-group has-feedback" style="margin-left:10px; position: relative;">
+                    @Html.LabelFor(m => m.Password, new { @class = "form-label fw-semibold", style = "margin-bottom: 15px;color:whitesmoke;font-weight:500;" })
+                    @Html.PasswordFor(m => m.Password, new
+                    {
+                        @class = "form-control",
+                        placeholder = "Enter your password",
+                        required = "required",
+                        style = "margin-bottom: 15px;"
+                    })
+                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                </div>
 
-                    <button type="submit" class="btn btn-primary w-100" style="margin: 25px; padding: 10px; width: 250px;">Login</button>
-                }
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success" style="margin: 25px; padding: 10px; width: 250px;">Login</button>
+                </div>
+
+                <!-- Move ValidationSummary here -->
+                @Html.ValidationSummary(true, "", new { @class = "alert alert-danger", style = "margin-top: 10px; list-style: none;" })
             </div>
         </main>
     </div>
-
 }
 
 @section scripts {
@@ -101,20 +168,39 @@
     <script type="text/javascript" src="~/Scripts/select2.js"></script>
 
     <script>
-        // Bootstrap 5 custom validation script
-        (function () {
-            'use strict';
-            const forms = document.querySelectorAll('.needs-validation');
+        $(function () {
+            function validateInput($input) {
+                var $parent = $input.closest('.form-group');
+                var $icon = $parent.find('.form-control-feedback');
 
-            Array.from(forms).forEach(form => {
-                form.addEventListener('submit', event => {
-                    if (!form.checkValidity()) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
+                if (!$input.val().trim()) {
+                    $parent.removeClass('has-success').addClass('has-error');
+                    $icon.removeClass('glyphicon-ok').addClass('glyphicon-exclamation-sign');
+                    return false;
+                } else {
+                    $parent.removeClass('has-error').addClass('has-success');
+                    $icon.removeClass('glyphicon-exclamation-sign').addClass('glyphicon-ok');
+                    return true;
+                }
+            }
+
+            // Live validation as the user types
+            $('#loginForm input[required]').on('input', function () {
+                validateInput($(this));
             });
-        })();
+
+            // Final validation on submit
+            $('#loginForm').on('submit', function (e) {
+                var isValid = true;
+                $(this).find('input[required]').each(function () {
+                    if (!validateInput($(this))) isValid = false;
+                });
+
+                if (!isValid) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            });
+        });
     </script>
 }
