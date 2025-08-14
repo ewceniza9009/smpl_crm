@@ -203,6 +203,7 @@ namespace smpl_crm.Controllers
         [StringLength(50)]
         public string Username { get; set; }
 
+        [Required(ErrorMessage = "Full Name is required")]
         [Display(Name = "Full Name")]
         public string FullName { get; set; }
 
