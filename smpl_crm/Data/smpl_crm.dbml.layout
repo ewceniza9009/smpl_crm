@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.5, 10.875" name="smpl_crm">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.25, 10.875" name="smpl_crm">
   <DataContextMoniker Name="/smpl_crmDataContext" />
   <nestedChildShapes>
     <classShape Id="e1f3756a-7474-4a03-8b96-d9892d79a158" absoluteBounds="3.5, 5.875, 2, 1.3862939453125005">
@@ -90,7 +90,7 @@
         <classShapeMoniker Id="2d4a7bfd-0309-4b65-b632-7b6f8bd44606" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 2.85319008691406); (3.04166666666667 : 2.85319008691406 : JumpStart); (3.20833333333333 : 2.85319008691406 : JumpEnd); (3.22916666666667 : 2.85319008691406 : JumpStart); (3.39583333333333 : 2.85319008691406 : JumpEnd); (3.5 : 2.85319008691406)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 3.02047403971354); (3.04166666666667 : 3.02047403971354 : JumpStart); (3.20833333333333 : 3.02047403971354 : JumpEnd); (3.22916666666667 : 3.02047403971354 : JumpStart); (3.39583333333333 : 3.02047403971354 : JumpEnd); (3.5 : 3.02047403971354)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/smpl_crmDataContext/innosoft_mstStaff/innosoft_mstStaff_innosoft_trnCall1" />
       <nodes>
         <classShapeMoniker Id="5ee35dee-7482-472c-9477-afe4d6541887" />
@@ -118,10 +118,10 @@
         <classShapeMoniker Id="b0b85caa-fa1c-45dd-8ee4-91b2bd010ea5" />
       </nodes>
     </associationConnector>
-    <classShape Id="ef23be06-a863-465b-a8df-8d64a5397765" absoluteBounds="12.25, 1.25, 2, 1.5785953776041666">
+    <classShape Id="29be4ed4-7075-4ec2-9509-51c68c86b8c2" absoluteBounds="12, 1, 2, 1.7708968098958331">
       <DataClassMoniker Name="/smpl_crmDataContext/MstUser" />
       <nestedChildShapes>
-        <elementListCompartment Id="3dd05270-f3dc-4652-8359-d8f43e9a037f" absoluteBounds="12.265, 1.71, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="e994c7fd-0046-4cca-8ccf-1d2a558425fa" absoluteBounds="12.015, 1.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

@@ -69,7 +69,6 @@ namespace smpl_crm.Data
         {
             OnCreated();
         }
-
         public smpl_crmDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
@@ -2613,6 +2612,8 @@ namespace smpl_crm.Data
 		
 		private string _Username;
 		
+		private string _FullName;
+		
 		private string _PasswordHash;
 		
 		private string _OrigPassword;
@@ -2625,6 +2626,8 @@ namespace smpl_crm.Data
     partial void OnIdChanged();
     partial void OnUsernameChanging(string value);
     partial void OnUsernameChanged();
+    partial void OnFullNameChanging(string value);
+    partial void OnFullNameChanged();
     partial void OnPasswordHashChanging(string value);
     partial void OnPasswordHashChanged();
     partial void OnOrigPasswordChanging(string value);
@@ -2672,6 +2675,26 @@ namespace smpl_crm.Data
 					this._Username = value;
 					this.SendPropertyChanged("Username");
 					this.OnUsernameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string FullName
+		{
+			get
+			{
+				return this._FullName;
+			}
+			set
+			{
+				if ((this._FullName != value))
+				{
+					this.OnFullNameChanging(value);
+					this.SendPropertyChanging();
+					this._FullName = value;
+					this.SendPropertyChanged("FullName");
+					this.OnFullNameChanged();
 				}
 			}
 		}

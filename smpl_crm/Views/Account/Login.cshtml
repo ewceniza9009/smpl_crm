@@ -1,0 +1,120 @@
+﻿@model smpl_crm.Controllers.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="@Url.Content("~/logo/streetsmartLogo.ico")" type="image/x-icon" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/dataTable/css/jquery.datatables.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/bootstrap-datatables.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/datepicker.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/css/select2.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/select2-bootstrap.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/toastr.css")" rel="stylesheet" />
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        main {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            max-width: 400px;
+            width: 100%;
+            padding: 5rem;
+            border-color: rgba(28,108,116,0.70);
+            box-shadow: 0.6rem 0.6rem 0.6rem rgba(63,151,148,0.70);
+            background: linear-gradient(20deg, rgba(28,108,116,0.80), rgba(63,151,148,0.80)), url('/Content/images/Jumbotron.png') no-repeat center center;
+            background-size: cover, cover;
+        }
+
+        .form-label {
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background-color: #3F9794;
+            border-color: rgba(28,108,116,0.70);
+        }
+
+            .btn-primary:hover {
+                background-color: #6CC1BE;
+                border-color: #6CC1BE;
+            }
+    </style>
+</head>
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
+    <div class="d-flex flex-column min-vh-100">
+        <main>
+            <div class="card shadow-sm border-0 p-4">
+                <h3 class="text-center" style="margin-bottom: 50px; color: whitesmoke;">Login</h3>
+
+                @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                {
+                    <div class="mb-3" style="margin-left:10px;">
+                        @Html.LabelFor(m => m.Username, new { @class = "form-label fw-semibold", style = "margin-bottom: 15px; color:whitesmoke;font-weight:500;" })
+                        @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Enter your username", required = "required", style = "margin-bottom: 15px;" })
+                    </div>
+
+                    <div class="mb-3" style="margin-left:10px;">
+                        @Html.LabelFor(m => m.Password, new { @class = "form-label fw-semibold", style = "margin-bottom: 15px;color:whitesmoke;font-weight:500;" })
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter your password", required = "required", style = "margin-bottom: 15px;" })
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100" style="margin: 25px; padding: 10px; width: 250px;">Login</button>
+                }
+            </div>
+        </main>
+    </div>
+
+}
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/jquery-2.0.3.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap-dataTables-paging.js"></script>
+    <script type="text/javascript" src="~/Scripts/select2.js"></script>
+
+    <script>
+        // Bootstrap 5 custom validation script
+        (function () {
+            'use strict';
+            const forms = document.querySelectorAll('.needs-validation');
+
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+}

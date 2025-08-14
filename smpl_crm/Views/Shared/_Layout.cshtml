@@ -31,15 +31,42 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/Home">
-                    <img src="~/Content/images/STREETSMART.png"/>
+                    <img src="~/Content/images/STREETSMART.png" />
                 </a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Customer", "MstCustomerListView", "Home")</li>
-                    <li>@Html.ActionLink("Call", "TrnCallListView", "Call")</li>
-                </ul>
+                @if (!string.IsNullOrEmpty(User.Identity.Name))
+                {
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("User", "MstUserListView", "User")</li>
+                        <li>@Html.ActionLink("Customer", "MstCustomerListView", "Home")</li>
+                        <li>@Html.ActionLink("Call", "TrnCallListView", "Call")</li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="@Url.Action("Logout", "Account")" class="user" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+                                <span>@Html.Raw(User.Identity.Name)</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="24" height="24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="@Url.Action("Login", "Account")" class="user" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+                                <span>Please login</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-key-round-icon lucide-key-round"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z" /><circle cx="16.5" cy="7.5" r=".5" fill="currentColor" /></svg>
+                            </a>
+                        </li>
+                    </ul>
+                }
             </div>
+
         </div>
     </nav>
 

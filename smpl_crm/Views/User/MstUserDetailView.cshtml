@@ -1,0 +1,170 @@
+﻿@{
+    ViewBag.Title = "User Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <h2>User Details</h2>
+    <div class="actions">
+        <button type="button" class="btn btn-primary" onclick="cmdSave_onclick()">
+            <span class="glyphicon glyphicon-save"></span> Save
+        </button>
+        <button type="button" class="btn btn-success" onclick="cmdEdit_onclick()">
+            <span class="glyphicon glyphicon-edit"></span> Edit
+        </button>
+        <button type="button" class="btn btn-default" onclick="cmdClose_onclick()">Close</button>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="IdMem">User Id :</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input type="text" class="form-control" id="IdMem" name="Id" placeholder="Id" data-bind="value: Id" disabled="disabled" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="UsernameMem">Username :</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input type="text" class="form-control" id="UsernameMem" name="Username" placeholder="Username" data-bind="value: Username" disabled="disabled" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="FullNameMem">Full Name :</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input type="text" class="form-control editable-field" id="FullNameMem" name="FullName" placeholder="Full Name" data-bind="value: FullName" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="saveConfirmModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="saveModalLabel">Confirm Save</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to save these changes?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="executeSaveButton">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/jquery-2.0.3.js" type="text/javascript"></script>
+<script src="~/Scripts/knockout-3.0.0.js" type="text/javascript"></script>
+<script src="~/Scripts/toastr.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    var koNamespace = {};
+    var koMstUserViewModel;
+
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+    koNamespace.initViewModel = function (user) {
+        var paramId = getParameterByName("Id");
+        var userViewModel;
+
+        if (paramId == 0) {
+            userViewModel = {
+                Id: !$('#IdMem').val() ? 0 : $('#IdMem').val(),
+                Username: $('#UsernameMem').val(),
+                FullName: $('#FullNameMem').val(),
+            };
+        } else {
+            userViewModel = {
+                Id: ko.observable(!user ? 0 : user.Id),
+                Username: ko.observable(!user ? "" : user.Username),
+                FullName: ko.observable(!user ? "" : user.FullName),
+            };
+        }
+        return userViewModel;
+    };
+
+    koNamespace.bindData = function (user) {
+        var viewModel = koNamespace.initViewModel(user);
+        ko.applyBindings(viewModel);
+        koMstUserViewModel = viewModel;
+    };
+
+    koNamespace.getMstUser = function () {
+        var userId = getParameterByName("Id");
+        if (!userId || userId == 0) {
+            koNamespace.bindData(null);
+            cmdEdit_onclick(); // Enable fields for new entry
+            return;
+        }
+
+        $.ajax({
+            url: "@(Html.Raw(Url.Action("MstUserDetail", "User")))?Id=" + userId,
+            type: 'get',
+            contentType: 'application/json',
+            success: function (result) {
+                koNamespace.bindData(result);
+                $('.editable-field').prop('disabled', true);
+            }
+        });
+    };
+
+    function executeSave() {
+        $.ajax({
+            url: "@Url.Action("MstUserDetailSave", "User")",
+            type: 'post',
+            data: ko.toJSON(koMstUserViewModel),
+            contentType: 'application/json',
+            success: function () {
+                toastr.success('Record saved successfully.');
+                $('.editable-field').prop('disabled', true);
+            },
+            error: function () {
+                toastr.error('Failed to save the record.');
+            }
+        });
+        $('#saveConfirmModal').modal('hide');
+    }
+
+    function cmdSave_onclick() {
+        var paramId = getParameterByName("Id");
+        var modalTitle = (paramId == 0) ? "Confirm New Record" : "Confirm Update";
+        $('#saveModalLabel').text(modalTitle);
+
+        // For new records, we need to manually create the view model from the form fields
+        if (paramId == 0 || !koMstUserViewModel) {
+            koMstUserViewModel = koNamespace.initViewModel();
+        }
+
+        $('#saveConfirmModal').modal('show');
+    }
+
+    function cmdEdit_onclick() {
+        $('.editable-field').prop('disabled', false);
+        $('#FullNameMem').focus();
+    }
+
+    function cmdClose_onclick() {
+        window.location.href = '@Url.Action("MstUserListView", "User")';
+    }
+
+    $(document).ready(function () {
+        koNamespace.getMstUser();
+        $('#executeSaveButton').on('click', executeSave);
+    });
+</script>

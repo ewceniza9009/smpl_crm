@@ -1,13 +1,13 @@
 ﻿@{
-    ViewBag.Title = "Customer List";
+    ViewBag.Title = "User List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="page-header">
-    <h2>Customer Management</h2>
+    <h2>User Management</h2>
     <div class="actions">
         <button type="button" class="btn btn-primary" onclick="CmdAdd_onclick()">
-            <span class="glyphicon glyphicon-plus"></span> Add Customer
+            <span class="glyphicon glyphicon-plus"></span> Register
         </button>
     </div>
 </div>
@@ -15,14 +15,13 @@
 <div class="card">
     <div class="card-body">
         <div class="table-responsive">
-            <table id="MstCustomerListDataTable" class="table table-hover" style="width:100%;">
+            <table id="MstUserListDataTable" class="table table-hover" style="width:100%;">
                 <thead>
                     <tr>
                         <th>Detail</th>
                         <th>Delete</th>
-                        <th>Name</th>
-                        <th>Address</th>
-                        <th>Contact Person</th>
+                        <th>User</th>
+                        <th>Full Name</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -38,10 +37,10 @@
 
 <script>
     $(document).ready(function () {
-        $('#MstCustomerListDataTable').dataTable({
+        $('#MstUserListDataTable').dataTable({
             "bServerSide": true,
             "bProcessing": true,
-            "sAjaxSource": "@Url.Action("MstCustomerList", "Home")",
+            "sAjaxSource": "@Url.Action("MstUserList", "User")",
             "aoColumns": [
                 {
                     "mData": "Id", "bSearchable": false,
@@ -52,24 +51,29 @@
                     }
                 },
                 {
-                    "mData": "Id", "bSearchable": false,
+                    "mData": "Id",
+                    "bSearchable": false,
                     "bSortable": false,
                     "sWidth": "80px", // Adjusted width
-                    "mRender": function (data) {
-                        return '<button type="button" class="btn btn-sm btn-danger" disabled onclick="CmdDelete_onclick(' + data + ')"><i class="glyphicon glyphicon-trash"></i> Delete</button>';
+                    "mRender": function (data, type, row) {
+                        var isDisabled = (data === 1); // or row.Id === 1
+                        var disabledAttr = isDisabled ? "disabled" : "";
+
+                        return '<button type="button" class="btn btn-sm btn-danger" ' + disabledAttr +
+                            (isDisabled ? '' : ' onclick="CmdDelete_onclick(' + data + ')"') + '>' +
+                            '<i class="glyphicon glyphicon-trash"></i> Delete</button>';
                     }
                 },
-                { "mDataProp": "Name" },
-                { "mDataProp": "Address" },
-                { "mDataProp": "ContactPerson" }
+                { "mDataProp": "Username" },
+                { "mDataProp": "FullName" }
             ]
         });
     });
 
     function CmdDelete_onclick(id) {
-        if (confirm("Do you want to delete this customer: " + id)) {
+        if (confirm("Do you want to delete this user: " + id)) {
             var data = { 'id': id };
-            $.post('@Url.Action("MstCustomerListDelete", "Home")', data,
+            $.post('@Url.Action("MstUserListDelete", "User")', data,
                 function (retdata) {
                     if (retdata == true) {
                         toastr.success("Record deleted successfully.");
@@ -85,11 +89,11 @@
 
     function CmdDetail_onclick(id) {
         if (id > 0) {
-            window.location.href = '@Url.Action("MstCustomerDetailView", "Home")?Id=' + id;
+            window.location.href = '@Url.Action("MstUserDetailView", "User")?Id=' + id;
         }
     }
 
     function CmdAdd_onclick() {
-        window.location.href = '@Url.Action("MstCustomerDetailView", "Home")';
+        window.location.href = '@Url.Action("MstUserDetailView", "User")';
     }
 </script>

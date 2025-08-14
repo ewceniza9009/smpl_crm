@@ -43,7 +43,7 @@ body {
 
         .navbar-custom .navbar-brand:hover,
         .navbar-custom .navbar-nav > li > a:hover {
-            color: #0056b3;
+            color: #3F9794;
         }
 .navbar-brand > img {
     margin-top: 0px;
@@ -269,4 +269,12 @@ textarea {
     .footer-content img {
         height: 40px;
         opacity: 0.7;
+    }
+.user {
+    color: #777777; /* default color */
+    transition: color 0.2s;
+}
+
+    .user:hover {
+        color: #3F9794;
     }
