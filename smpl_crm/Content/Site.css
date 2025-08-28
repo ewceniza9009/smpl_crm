@@ -278,3 +278,41 @@ textarea {
     .user:hover {
         color: #3F9794;
     }
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .jumbotron {
+        padding: 60px 15px;
+    }
+
+        .jumbotron h1 {
+            font-size: 2.5rem;
+        }
+
+        .jumbotron .lead {
+            font-size: 1.2rem;
+        }
+
+    .feature-card {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .jumbotron h1 {
+        font-size: 2rem;
+    }
+
+    .feature-card h2 {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .navbar-collapse.collapse {
+        display: block !important; /* Keep navbar always visible */
+        height: auto !important; /* Prevent 0 height */
+        padding-bottom: 0;
+        overflow: visible !important;
+    }
+}
